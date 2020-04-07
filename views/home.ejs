@@ -1,0 +1,56 @@
+<%- include ('templates/header'); -%>
+
+	<head>
+	    <link rel="stylesheet" type ="text/css" href="styles/app.css">
+        <meta charset="utf-8" />
+	</head>
+
+<div class="jumbotron">
+	<body>
+        <header>
+            <center>
+            <h1 class = "title">Final Project</h1>
+            </center>
+        </header>
+        <nav class = "nava">
+            <center>
+            <hr width="50%" />
+            <a href = "/"><u>Home</u></a>
+            <a href = "/spec">Specifications</a>
+            <a href = "/impact">Impact</a>
+            </center>
+        </nav>
+        <main>
+           <center>
+             <h2>Login Form</h2>
+
+<form action="/action_page.php" method="post">
+  <div class="imgcontainer">
+    <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+
+           </center>
+        </main>
+         <br/><br /><br />
+
+
+<%- include ('templates/footer'); -%>

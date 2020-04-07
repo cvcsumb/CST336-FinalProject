@@ -1,0 +1,23 @@
+Installed in this package
+
+```
+foo@bar:~$ npm init    
+foo@bar:~$ touch index.js    
+foo@bar:~$ npm install --save express    
+foo@bar:~$ npm install --save ejs    
+foo@bar:~$ npm install --save body-parser    
+foo@bar:~$ npm install jsdom    
+foo@bar:~$ npm install jquery    
+foo@bar:~$ npm install --save request       
+foo@bar:~$ mkdir views    
+foo@bar:~$ mkdir views/templates    
+foo@bar:~$ touch views/templates/footer.ejs    
+foo@bar:~$ touch views/templates/header.ejs    
+foo@bar:~$ touch views/home.ejs    
+foo@bar:~$ touch views/error.ejs    
+foo@bar:~$ node index.js   
+```
+
+Notes 4.6.20 - EH
+First Commit
+Setup a mock site w/login screen
