@@ -12,6 +12,16 @@ app.get('/', function(req, res){
     res.render('home');
 });
 
+/* The handler for the CREATE ACCOUNT route */
+app.get('/createaccount', function(req, res){
+    res.render('createaccount');
+});
+
+/* The handler for the PROFILE route */
+app.get('/profile', function(req, res){
+    res.render('profile');
+});
+
 /* The handler for undefined routes */
 app.get('*', function(req, res){
    res.render('error'); 
