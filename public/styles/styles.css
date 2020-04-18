@@ -3,6 +3,10 @@
     color: black;
 }
 
+head {
+    background-image: url("Spin3.png");
+}
+
 body {
     background-color: #CBE2F6;
     text-align: center;
