@@ -1,61 +1,50 @@
 <%- include ('templates/header'); -%>
 
-	<head>
-	    <link rel="stylesheet" type ="text/css" href="styles/app.css">
-        <meta charset="utf-8" />
-	</head>
-
-<div class="jumbotron">
-	<body>
-        <header>
-            <center>
-            <h1 class = "title">Final Project</h1>
-            </center>
-        </header>
-        <nav class = "nava">
-            <center>
-            <hr width="50%" />
-            <a href = "/">Login</a>
-            <a href = "/profile"><u>Profile</u></a>
-            <a href = "/createaccount">Create</a>
-            <a href = "/travel">Travel</a>
-            <a href = "/admin">Admin</a>
-            </center>
-        </nav>
-        <main>
-           <center>
-             <h2>User Profile: -> YOUR NAME HERE</h2>
-
-<form action="/action_page.php" method="post">
-  <div class="imgcontainer">
-    <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
-  </div>
-
-  <div class="container">
-      
-    <label for="uname"><b>Username: YOUR USERNAME HERE</b></label><br>
-    <label for="ename"><b>Email: YOUR EMAIL HERE</b></label><br>
-    <label for="age"><b>AGE: YOUR EMAIL HERE</b></label><br><br>
-   
-   
-   <label for="dname"><b>DELETE YOUR ACCOUNT</b></label>
-   
-   <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="delete">delete</button>
-    <label>
-     
-    </label>
-  </div>
-</form>
-
-           </center>
-        </main>
-         <br/><br /><br />
-
+    <div class="jumbotron">
+        <body>
+            <header>
+                <center>
+                    <h1 class = "title">Final Project</h1>
+                </center>
+            </header>
+            <nav class = "nava">
+                <center>
+                    <hr width="50%" />
+                    <a href = "/">Login</a>
+                    <a href = "/profile"><u>Profile</u></a>
+                    <a href = "/createaccount">Create</a>
+                    <a href = "/travel">Travel</a>
+                    <a href = "/admin">Admin</a>
+                </center>
+            </nav>
+            <main>
+                <center>
+                    <h2>User Profile: -> YOUR NAME HERE</h2>
+                    
+                    <form action="/action_page.php" method="post">
+                        <div class="imgcontainer">
+                            <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                        </div>
+                        
+                        <div class="container">
+                            <label for="uname"><b>Username: YOUR USERNAME HERE</b></label><br>
+                            <label for="ename"><b>Email: YOUR EMAIL HERE</b></label><br>
+                            <label for="age"><b>AGE: YOUR EMAIL HERE</b></label><br><br>
+                            
+                            
+                            <label for="dname"><b>DELETE YOUR ACCOUNT</b></label>
+                            
+                            <label for="uname"><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="uname" required>
+                            
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                            
+                            <button type="delete">delete</button>
+                        </div>
+                    </form>
+                </center>
+            </main>
+            <br/><br/><br/>
 
 <%- include ('templates/footer'); -%>
