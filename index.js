@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
-    res.render('home');
+    res.render('login');
 });
 
 /* The handler for the CREATE ACCOUNT route */
@@ -20,6 +20,16 @@ app.get('/createaccount', function(req, res){
 /* The handler for the PROFILE route */
 app.get('/profile', function(req, res){
     res.render('profile');
+});
+
+/* The handler for the TRAVEL route */
+app.get('/travel', function(req, res){
+    res.render('travel');
+});
+
+/* The handler for the ADMIN route */
+app.get('/admin', function(req, res){
+    res.render('admin');
 });
 
 /* The handler for undefined routes */
