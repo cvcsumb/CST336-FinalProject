@@ -1,33 +1,68 @@
 <%- include ('templates/header'); -%>
 
-    <div class="jumbotron">
-        <body>
-            <header>
-                <center>
-                    <h1 class = "title">Final Project</h1>
-                </center>
-            </header>
-            <nav class = "nava">
-                <center>
-                    <hr width="50%" />
-                    <a href = "/"><u>Login</u></a>
-                    <a href = "/profile">Profile</a>
-                    <a href = "/createaccount">Create</a>
-                    <a href = "/travel">Travel</a>
-                    <a href = "/admin">Admin</a>
-                </center>
-            </nav>
-            <main>
-                <center>
-                    <h2>Administrator</h2>
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">Login</a>
+            <a href = "/profile">Profile</a>
+            <a href = "/createaccount">Create</a>
+            <a href = "/travel">Travel</a>
+            <a href = "/admin"><u>Admin</u></a>
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Administrator</h2>
+            
+            <form action="/action_page.php" method="post">
+                <div class="container">
+                    <h3><b>Edit Users:</b></h3>
+                    <input type="text" placeholder="Enter Last Name" name="lname" required>
+                    <button type="submit">Search</button>
                     
-                    <form action="/action_page.php" method="post">
-                        <div class="container">
-                            <!-- Work in Progress -->
-                        </div>
-                    </form>
-                </center>
-            </main>
-            <br/><br/><br/>
+                    <!-- List of Names & Buttons to Delete those Accounts -->
+                </div>
+                <hr>
+                
+                <div class="container">
+                    <h3><b>Update Trip Prices:</b></h3>
+                    <label for="startLocation"><b>From:</b></label>
+                    <select id="startLocation" name="startLocation">
+                        <option value="1stlocation">1st Location</option>
+                        <option value="2ndlocation">2nd Location</option>
+                        <option value="3rdlocation">3rd Location</option>
+                    </select>
+                    
+                    <label for="endLocation"><b>To:</b></label>
+                    <select id="endLocation" name="endLocation">
+                        <option value="1stlocation">1st Location</option>
+                        <option value="2ndlocation">2nd Location</option>
+                        <option value="3rdlocation">3rd Location</option>
+                    </select>
+                    <br><br>
+                    
+                    <label for="price"><b>Price: $</b></label>
+                    <input type="number" step="0.01" min="0.00" placeholder="0.00" name="price" required>
+                    <button type="submit">Set Price</button>
+                </div>
+                <hr>
+                    
+                <div class="container">
+                    <h3><b>Edit Locations:</b></h3>
+                    <input type="text" placeholder="Enter Location" name="location" required>
+                    <button type="submit">Add Location</button>
+                    
+                    <label for="locations"><b>Locations: </b></label>
+                    <select id="locations" name="locations">
+                        <option value="1stlocation">1st Location</option>
+                        <option value="2ndlocation">2nd Location</option>
+                        <option value="3rdlocation">3rd Location</option>
+                    </select>
+                    <button type="submit" style="background-color: #f44336">Delete Location</button>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
 
 <%- include ('templates/footer'); -%>

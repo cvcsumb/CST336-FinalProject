@@ -1,57 +1,50 @@
 <%- include ('templates/header'); -%>
 
-    <div class="jumbotron">
-        <body>
-            <header>
-                <center>
-                    <h1 class = "title">Final Project</h1>
-                </center>
-            </header>
-            <nav class = "nava">
-                <center>
-                    <hr width="50%" />
-                    <a href = "/"><u>Login</u></a>
-                    <a href = "/profile">Profile</a>
-                    <a href = "/createaccount">Create</a>
-                    <a href = "/travel">Travel</a>
-                    <a href = "/admin">Admin</a>
-                </center>
-            </nav>
-            <main>
-                <center>
-                    <h2>Book a Scooter</h2>
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">Login</a>
+            <a href = "/profile">Profile</a>
+            <a href = "/createaccount">Create</a>
+            <a href = "/travel"><u>Travel</u></a>
+            <a href = "/admin">Admin</a>
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Book a Scooter</h2>
+            
+            <form action="/action_page.php" method="post">
+                <div class="container">
+                    <!--Use a for loop in JS to generate dropdown list from database-->
+                    <label for="startLocation"><b>Scooting From:</b></label>
+                    <select id="startLocation" name="startLocation">
+                        <option value="1stlocation">1st Location</option>
+                        <option value="2ndlocation">2nd Location</option>
+                        <option value="3rdlocation">3rd Location</option>
+                    </select>
                     
-                    <form action="/action_page.php" method="post">
-                        <div class="container">
-                            <!--Use a for loop in JS to generate dropdown list from database-->
-                            <label for="startLocation"><b>Scooting From:</b></label>
-                            <select id="startLocation" name="startLocation">
-                                <option value="1stlocation">1st Location</option>
-                                <option value="2ndlocation">2nd Location</option>
-                                <option value="3rdlocation">3rd Location</option>
-                            </select>
-                            
-                            <label for="endLocation"><b>Going To:</b></label>
-                            <select id="endLocation" name="endLocation">
-                                <option value="1stlocation">1st Location</option>
-                                <option value="2ndlocation">2nd Location</option>
-                                <option value="3rdlocation">3rd Location</option>
-                            </select>
-                            <br><br>
-                            
-                            <!-- Amount of Scooters Available at Starting Location -->
-                            Scooters Available: 
-                            <br><br>
-                            
-                            <!-- Price for the Trip based on Start & End Locations -->
-                            Price: $
-                            <br><br>
-                            
-                            <button type="submit">Book Route</button>
-                        </div>
-                    </form>
-                </center>
-            </main>
-            <br/><br/><br/>
+                    <label for="endLocation"><b>Going To:</b></label>
+                    <select id="endLocation" name="endLocation">
+                        <option value="1stlocation">1st Location</option>
+                        <option value="2ndlocation">2nd Location</option>
+                        <option value="3rdlocation">3rd Location</option>
+                    </select>
+                    <br><br>
+                    
+                    <!-- Amount of Scooters Available at Starting Location -->
+                    <b>Scooters Available:</b>
+                    <br><br>
+                    
+                    <!-- Price for the Trip based on Start & End Locations -->
+                    <b>Price: $</b>
+                    <br><br>
+                    
+                    <button type="submit">Book Route</button>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
 
 <%- include ('templates/footer'); -%>
