@@ -16,7 +16,8 @@ foo@bar:~$ touch views/templates/header.ejs
 foo@bar:~$ touch views/home.ejs    
 foo@bar:~$ touch views/error.ejs    
 foo@bar:~$ node index.js   
-```
+
+-----------------------
 
 Notes 4.6.20 - EH
 First Commit
@@ -24,9 +25,19 @@ Setup a mock site w/login screen
 
 -----------------------
 
+Notes 4.18.20 - CV
+
 foo@bar:~$ touch views/admin.ejs    
 foo@bar:~$ touch views/travel.ejs 
 Changed home.ejs -> login.ejs
 Changed app.css -> styles.css
 
-Notes 4.18.20 - CV
+
+-----------------------
+
+Notes 4.18.20 - MM
+
+Updated styles.css
+Made design changes to all webpages
+
+-----------------------
