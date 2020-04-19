@@ -17,7 +17,7 @@ h1 {
 }
 
 h2 {
-    color: red;
+    color: white;
 }
 
 body {
@@ -30,11 +30,16 @@ body {
 }
 
 .nava{
-    padding: 15px;
-    padding-bottom: 4px;
-    font-size: 1.8em;
+    padding: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 1.9em;
     text-decoration: none;
     color: white;
+    font-family: "Times New Roman", Times, serif;
+    border-style: dotted;
+    border-color: white;
+    background-color: #032526;
 }
 
 .search{
@@ -46,7 +51,7 @@ body {
 }
 
 .footer{
-    color: #F65900;
+    color: white;
 }
 
 body {
