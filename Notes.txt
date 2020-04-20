@@ -41,3 +41,8 @@ Updated styles.css
 Made design changes to all webpages
 
 -----------------------
+
+Notes 4.20.20 - EH
+Added database
+
+-----------------------
