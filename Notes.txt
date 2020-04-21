@@ -52,3 +52,8 @@ Added Locations Page for 1st Feature Requirment
 Setup Database Tables (We just need to fill them with correct info now)
 
 -----------------------
+
+Notes 4.21.20 - CV
+Added Some Info into DB Tables
+
+-----------------------
