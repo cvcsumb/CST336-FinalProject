@@ -37,19 +37,19 @@ INSERT INTO `locations` (`id`, `name`, `numOfDevices`, `api`) VALUES
 (4, 'Black Box Cabaret', 18, 'Sunny'),
 (5, 'Chapman Science Academic Center', 16, 'Sunny'),
 (6, 'College of Arts, Humanities, and Social Sciences', 4, 'Sunny'),
-(7, 'Cinematic Arts & Technology', 9, 'Sunny');
-(8, 'Coast Hall', 2, 'Sunny');
-(9, 'Del Mar', 20, 'Sunny');
-(10, 'Dining Commons', 3, 'Sunny');
-(11, 'Dunes Hall', 5, 'Sunny');
-(12, 'Facilities Services & Operations', 6, 'Sunny');
-(13, 'Gambord Business Information & Technology', 11, 'Sunny');
-(14, 'Gavilan Hall', 1, 'Sunny');
-(15, 'Green Hall', 5, 'Sunny');
-(16, 'Harbor Hall', 4, 'Sunny');
-(17, 'Manzanita Hall', 8, 'Sunny');
-(18, 'Promontory – West', 12, 'Sunny');
-(19, 'Promontory – Center', 15, 'Sunny');
+(7, 'Cinematic Arts & Technology', 9, 'Sunny'),
+(8, 'Coast Hall', 2, 'Sunny'),
+(9, 'Del Mar', 20, 'Sunny'),
+(10, 'Dining Commons', 3, 'Sunny'),
+(11, 'Dunes Hall', 5, 'Sunny'),
+(12, 'Facilities Services & Operations', 6, 'Sunny'),
+(13, 'Gambord Business Information & Technology', 11, 'Sunny'),
+(14, 'Gavilan Hall', 1, 'Sunny'),
+(15, 'Green Hall', 5, 'Sunny'),
+(16, 'Harbor Hall', 4, 'Sunny'),
+(17, 'Manzanita Hall', 8, 'Sunny'),
+(18, 'Promontory – West', 12, 'Sunny'),
+(19, 'Promontory – Center', 15, 'Sunny'),
 (20, 'Vineyard Suites', 1, 'Sunny');
 
 LOCK TABLES `locations` WRITE;
@@ -110,19 +110,19 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `age`, `password`) VALUE
 (4, 'Kristy Lucas', 'klun', 'email@email.com', 99, 'klpass'),
 (5, 'Craig Miller', 'cmun', 'email@email.com', 23, 'cmpass'),
 (6, 'Joanne Barton', 'jbun', 'email@email.com', 42, 'jbpass'),
-(7, 'Helen Sanders', 'hsun', 'email@email.com', 50, 'hspass');
-(8, 'Jimmy Tucker', 'jtun', 'email@email.com', 18, 'jtpass');
-(9, 'Sara Vega', 'svun', 'email@email.com', 76, 'svpass');
-(10, 'Vincent Rowe', 'vrun', 'email@email.com', 19, 'vrpass');
-(11, 'Madeline Ramsey', 'mrun', 'email@email.com', 34, 'mrpass');
-(12, 'Bradford Moody', 'bmun', 'email@email.com', 46, 'bmpass');
-(13, 'Billie Walker', 'bwun', 'email@email.com', 23, 'bwpass');
-(14, 'Richard Wilkerson', 'rwun', 'email@email.com', 27, 'rwpass');
-(15, 'Stacy Lewis', 'slun', 'email@email.com', 67, 'slpass');
-(16, 'Ginger Mitchell', 'gmun', 'email@email.com', 43, 'gmpass');
-(17, 'Felix Webster', 'fwun', 'email@email.com', 22, 'fwpass');
-(18, 'Miriam Hansen', 'mhun', 'email@email.com', 33, 'mhpass');
-(19, 'June Flores', 'jfun', 'email@email.com', 88, 'jfpass');
+(7, 'Helen Sanders', 'hsun', 'email@email.com', 50, 'hspass'),
+(8, 'Jimmy Tucker', 'jtun', 'email@email.com', 18, 'jtpass'),
+(9, 'Sara Vega', 'svun', 'email@email.com', 76, 'svpass'),
+(10, 'Vincent Rowe', 'vrun', 'email@email.com', 19, 'vrpass'),
+(11, 'Madeline Ramsey', 'mrun', 'email@email.com', 34, 'mrpass'),
+(12, 'Bradford Moody', 'bmun', 'email@email.com', 46, 'bmpass'),
+(13, 'Billie Walker', 'bwun', 'email@email.com', 23, 'bwpass'),
+(14, 'Richard Wilkerson', 'rwun', 'email@email.com', 27, 'rwpass'),
+(15, 'Stacy Lewis', 'slun', 'email@email.com', 67, 'slpass'),
+(16, 'Ginger Mitchell', 'gmun', 'email@email.com', 43, 'gmpass'),
+(17, 'Felix Webster', 'fwun', 'email@email.com', 22, 'fwpass'),
+(18, 'Miriam Hansen', 'mhun', 'email@email.com', 33, 'mhpass'),
+(19, 'June Flores', 'jfun', 'email@email.com', 88, 'jfpass'),
 (20, 'Derek Reese', 'drun', 'email@email.com', 17, 'drpass');
 
 LOCK TABLES `users` WRITE;
@@ -167,7 +167,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `l9_quotes`
 --
 ALTER TABLE `pricing`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
   
 --
 -- AUTO_INCREMENT for table `locations`
