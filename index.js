@@ -27,6 +27,11 @@ app.get('/travel', function(req, res){
     res.render('travel');
 });
 
+/* The handler for the LOCATIONS route */
+app.get('/locations', function(req, res){
+    res.render('locations');
+});
+
 /* The handler for the ADMIN route */
 app.get('/admin', function(req, res){
     res.render('admin');

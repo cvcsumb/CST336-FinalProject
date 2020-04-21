@@ -46,3 +46,8 @@ Notes 4.20.20 - EH
 Added database
 
 -----------------------
+
+Notes 4.20.20 - CV
+Added Locations Page for 1st Feature Requirment
+
+-----------------------

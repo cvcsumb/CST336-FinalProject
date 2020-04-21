@@ -1,0 +1,49 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">LOGIN</a>
+            <a href = "/profile">PROFILE</a>
+            <a href = "/createaccount">CREATE</a>
+            <a href = "/travel">TRAVEL</a>
+            <a href = "/locations"><u>LOCATIONS</u></a>
+            <a href = "/admin">ADMIN</a>
+        </center>
+    </nav>
+    <main>
+        <center>
+            <h2>Search our Locations</h2>
+            
+            <form action="/action_page.php" method="post">
+                <div class="container">
+                    <h3><b>Search by Location Name</b></h3>
+                    <input type="text" placeholder="Enter Location Name" name="lname" required>
+                    <button type="submit">Search</button>
+                    
+                    <!-- List of Locations & their Info -->
+                </div>
+                <hr>
+                
+                <div class="container">
+                    <h3><b>Search by Min Number of Scooters</b></h3>
+                    <input type="number" min="0" placeholder="Enter Number of Scooters" name="numScooters" required>
+                    <button type="submit">Search</button>
+                    
+                    <!-- List of Locations that have at least that amount of scooters -->
+                </div>
+                <hr>
+                
+                <div class="container">
+                    <h3><b>Search by Weather</b></h3>
+                    <input type="text" placeholder="Enter Weather" name="weather" required>
+                    <button type="submit">Search</button>
+                    
+                    <!-- List of Locations with those Weather Coniditions -->
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>
