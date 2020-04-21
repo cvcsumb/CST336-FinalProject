@@ -49,5 +49,6 @@ Added database
 
 Notes 4.20.20 - CV
 Added Locations Page for 1st Feature Requirment
+Setup Database Tables (We just need to fill them with correct info now)
 
 -----------------------
