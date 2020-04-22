@@ -73,13 +73,26 @@ CREATE TABLE `pricing` (
 --
 
 INSERT INTO `pricing` (`id`, `price`, `tax`, `distance`) VALUES
-(1, 'Albert', 'Einstein', '1879-03-14'),
-(2, 'Agatha', 'Christie', '1890-09-15'),
-(3, 'Marie', 'Curie', '1867-11-07'),
-(4, 'Abraham', 'Lincoln', '1809-02-12'),
-(5, 'Mohandas', 'Gandhi', '1869-10-02'),
-(6, 'Helen', 'Keller', '1880-06-27'),
-(7, 'Benjamin', 'Franklin', '1706-01-17');
+(1, 5.10, 0.10, 5),
+(2, 2.25, 0.05, 3),
+(3, 6.50, 0.01, 7),
+(4, 3.15, 0.10, 4),
+(5, 1.55, 0.15, 2.10),
+(6, 1.75, 0.04, 2.34),
+(7, 4.32, 0.02, 5),
+(8, 8.00, 0.08, 7.56),
+(9, 2.75, 0.10, 3),
+(10, 2.90, 0.20, 3.15),
+(11, 4.67, 0.11, 5),
+(12, 5.32, 0.07, 5.54),
+(13, 4.20, 0.02, 4.60),
+(14, 2.47, 0.05, 2.80),
+(15, 6.34, 0.04, 6),
+(16, 2.10, 0.13, 2),
+(17, 1.34, 0.18, 1),
+(18, 9.50, 0.14, 10.4),
+(19, 7.10, 0.09, 7.8),
+(20, 5.67, 0.03, 6.3);
 
 LOCK TABLES `pricing` WRITE;
 /*!40000 ALTER TABLE `pricing` DISABLE KEYS */;
@@ -167,7 +180,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `l9_quotes`
 --
 ALTER TABLE `pricing`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
   
 --
 -- AUTO_INCREMENT for table `locations`
