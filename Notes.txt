@@ -55,5 +55,7 @@ Setup Database Tables (We just need to fill them with correct info now)
 
 Notes 4.21.20 - CV
 Added Some Info into DB Tables
+Added mysql module to Project
+Added backend for Locations Page (Search by Name, Num Scooters, & Weather Now Works)
 
 -----------------------

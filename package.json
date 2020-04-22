@@ -1,7 +1,7 @@
 {
   "name": "final",
   "version": "1.0.0",
-  "description": "",
+  "description": "As the final project for CST 336, we created a sample website for Spin Scooters where users are able to create an account, login, edit their account, and book a fake trip. Admins are able to edit the database where all the site info is located, to remove accounts, edit locations, and edit trip prices.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,9 @@
     "body-parser": "^1.19.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
-    "jsdom": "^16.2.2"
+    "jquery": "^3.5.0",
+    "jsdom": "^16.2.2",
+    "mysql": "^2.18.1",
+    "sql": "^0.78.0"
   }
 }

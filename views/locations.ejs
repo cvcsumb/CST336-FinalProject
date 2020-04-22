@@ -15,33 +15,66 @@
         <center>
             <h2>Search our Locations</h2>
             
-            <form action="/action_page.php" method="post">
-                <div class="container">
-                    <h3><b>Search by Location Name</b></h3>
-                    <input type="text" placeholder="Enter Location Name" name="lname" required>
-                    <button type="submit">Search</button>
+            <div class="border">
+                <form action="/locationsbyname" method="GET">
+                    <div class="container">
+                        <h3><b>Search by Location Name</b></h3>
+                        <input type="text" placeholder="Enter Location Name" name="lname" required>
+                        <button type="submit">Search</button>
+                        
+                        <!-- List of Locations & their Info -->
+                        <div class='row'>
+                            <ul>
+                                <%if(locationsN){%>
+                                    <%locationsN.forEach(function(location){%>
+                                        <li><%=location.name%> | Available Scooters: <%=location.numOfDevices%> | Weather: <%=location.api%></li>
+                                    <%});%>
+                                <%}%>
+                            </ul>
+                    	</div>
+                    </div>
+                </form>
+                <hr>
                     
-                    <!-- List of Locations & their Info -->
-                </div>
+                <form action="/locationsbynumscooters" method="GET">
+                    <div class="container">
+                        <h3><b>Search by Min Number of Scooters</b></h3>
+                        <input type="number" min="0" placeholder="Enter Number of Scooters" name="numScooters" required>
+                        <button type="submit">Search</button>
+                        
+                        <!-- List of Locations that have at least that amount of scooters -->
+                        <div class='row'>
+                            <ul>
+                                <%if(locationsNS){%>
+                                    <%locationsNS.forEach(function(location){%>
+                                        <li><%=location.name%> | Available Scooters: <%=location.numOfDevices%> | Weather: <%=location.api%></li>
+                                    <%});%>
+                                <%}%>
+                            </ul>
+                    	</div>
+                    </div>
+                </form>
                 <hr>
                 
-                <div class="container">
-                    <h3><b>Search by Min Number of Scooters</b></h3>
-                    <input type="number" min="0" placeholder="Enter Number of Scooters" name="numScooters" required>
-                    <button type="submit">Search</button>
-                    
-                    <!-- List of Locations that have at least that amount of scooters -->
-                </div>
-                <hr>
-                
-                <div class="container">
-                    <h3><b>Search by Weather</b></h3>
-                    <input type="text" placeholder="Enter Weather" name="weather" required>
-                    <button type="submit">Search</button>
-                    
-                    <!-- List of Locations with those Weather Coniditions -->
-                </div>
-            </form>
+                <form action="/locationsbyweather" method="GET">
+                    <div class="container">
+                        <h3><b>Search by Weather</b></h3>
+                        <input type="text" placeholder="Enter Weather" name="weather" required>
+                        <button type="submit">Search</button>
+                        
+                        <!-- List of Locations with those Weather Coniditions -->
+                        <div class='row'>
+                            <ul>
+                                <%if(locationsW){%>
+                                    <%locationsW.forEach(function(location){%>
+                                        <li><%=location.name%> | Available Scooters: <%=location.numOfDevices%> | Weather: <%=location.api%></li>
+                                    <%});%>
+                                <%}%>
+                            </ul>
+                    	</div>
+                    </div>
+                </form>
+            </div>
         </center>
     </main>
     <br/>

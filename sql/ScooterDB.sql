@@ -32,25 +32,25 @@ CREATE TABLE `locations` (
 
 INSERT INTO `locations` (`id`, `name`, `numOfDevices`, `api`) VALUES
 (1, 'Administration Building', 4, 'Sunny'),
-(2, 'Alumni & Visitors Center', 8, 'Sunny'),
+(2, 'Alumni & Visitors Center', 8, 'Rain'),
 (3, 'Beach Hall', 13, 'Sunny'),
-(4, 'Black Box Cabaret', 18, 'Sunny'),
-(5, 'Chapman Science Academic Center', 16, 'Sunny'),
-(6, 'College of Arts, Humanities, and Social Sciences', 4, 'Sunny'),
+(4, 'Black Box Cabaret', 18, 'Cloudy'),
+(5, 'Chapman Science Academic Center', 16, 'Cloudy'),
+(6, 'College of Arts, Humanities, and Social Sciences', 4, 'Rain'),
 (7, 'Cinematic Arts & Technology', 9, 'Sunny'),
-(8, 'Coast Hall', 2, 'Sunny'),
-(9, 'Del Mar', 20, 'Sunny'),
+(8, 'Coast Hall', 2, 'Cloudy'),
+(9, 'Del Mar', 20, 'Rain'),
 (10, 'Dining Commons', 3, 'Sunny'),
-(11, 'Dunes Hall', 5, 'Sunny'),
+(11, 'Dunes Hall', 5, 'Cloudy'),
 (12, 'Facilities Services & Operations', 6, 'Sunny'),
-(13, 'Gambord Business Information & Technology', 11, 'Sunny'),
-(14, 'Gavilan Hall', 1, 'Sunny'),
+(13, 'Gambord Business Information & Technology', 11, 'Rain'),
+(14, 'Gavilan Hall', 1, 'Cloudy'),
 (15, 'Green Hall', 5, 'Sunny'),
-(16, 'Harbor Hall', 4, 'Sunny'),
+(16, 'Harbor Hall', 4, 'Rain'),
 (17, 'Manzanita Hall', 8, 'Sunny'),
-(18, 'Promontory – West', 12, 'Sunny'),
+(18, 'Promontory – West', 12, 'Rain'),
 (19, 'Promontory – Center', 15, 'Sunny'),
-(20, 'Vineyard Suites', 1, 'Sunny');
+(20, 'Vineyard Suites', 1, 'Cloudy');
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;

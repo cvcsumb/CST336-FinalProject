@@ -1,11 +1,21 @@
 /* Require external APIs and start our application instance */
 var express = require('express');
 var app = express();
-var request = require('request');
+var mysql = require('mysql');
+//var request = require('request');
 
 /* Configure our server to read public folder and ejs files */
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+
+/* Configure MySQL DBMS */
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: '', /*Add your local mysql username*/
+    password: '', /*Add your local mysql password*/
+    database: 'scooterdb'
+});
+connection.connect();
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
@@ -29,7 +39,47 @@ app.get('/travel', function(req, res){
 
 /* The handler for the LOCATIONS route */
 app.get('/locations', function(req, res){
-    res.render('locations');
+    var locationsN, locationsNS, locationsW = null;
+    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+});
+
+app.get('/locationsbyname', function(req, res){
+    var stmt = 'select * from locations where name = \'' 
+                + req.query.lname + '\';';
+	connection.query(stmt, function(error, results){
+	    var locationsN, locationsNS, locationsW = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        locationsN = results;
+	    }
+	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+	});
+});
+
+app.get('/locationsbynumscooters', function(req, res){
+    var stmt = 'select * from locations where numOfDevices >= \'' 
+                + req.query.numScooters + '\';';
+	connection.query(stmt, function(error, results){
+	    var locationsN, locationsNS, locationsW = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        locationsNS = results;
+	    }
+	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+	});
+});
+
+app.get('/locationsbyweather', function(req, res){
+    var stmt = 'select * from locations where api = \'' 
+                + req.query.weather + '\';';
+	connection.query(stmt, function(error, results){
+	    var locationsN, locationsNS, locationsW = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        locationsW = results;
+	    }
+	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+	});
 });
 
 /* The handler for the ADMIN route */
