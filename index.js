@@ -37,12 +37,30 @@ app.get('/createaccount', function(req, res){
 
 /* The handler for the PROFILE route */
 app.get('/profile', function(req, res){
-    res.render('profile');
+	/*Will need to get logined user when login stuff is set up*/
+    var stmt = 'select * from users;';
+	connection.query(stmt, function(error, results){
+	    var profile = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        profile = results[0];
+	    }
+	    res.render('profile', {profile: profile});
+	});
 });
 
 /* The handler for the TRAVEL route */
 app.get('/travel', function(req, res){
-    res.render('travel');
+    var stmt = 'select * from locations, pricing;';
+	connection.query(stmt, function(error, results){
+	    var locations = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        locations = results;
+	    }
+	    console.log(locations);
+	    res.render('travel', {locations: locations});
+	});
 });
 
 /* The handler for the API route */

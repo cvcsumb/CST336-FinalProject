@@ -20,25 +20,29 @@
                     <!--Use a for loop in JS to generate dropdown list from database-->
                     <label for="startLocation"><b>Scooting From:</b></label>
                     <select id="startLocation" name="startLocation">
-                        <option value="1stlocation">1st Location</option>
-                        <option value="2ndlocation">2nd Location</option>
-                        <option value="3rdlocation">3rd Location</option>
+                        <%if(locations){%>
+                            <%locations.forEach(function(location){%>
+                                <option value="<%=location.name%>"><%=location.name%></option>
+                            <%});%>
+                        <%}%>
                     </select>
                     
                     <label for="endLocation"><b>Going To:</b></label>
                     <select id="endLocation" name="endLocation">
-                        <option value="1stlocation">1st Location</option>
-                        <option value="2ndlocation">2nd Location</option>
-                        <option value="3rdlocation">3rd Location</option>
+                        <%if(locations){%>
+                            <%locations.forEach(function(location){%>
+                                <option value="<%=location.name%>"><%=location.name%></option>
+                            <%});%>
+                        <%}%>
                     </select>
                     <br><br>
                     
-                    <!-- Amount of Scooters Available at Starting Location -->
-                    <b>Scooters Available:</b>
+                    <!-- Amount of Scooters Available at Starting Location (Will Need to Update based on Selected Start Location)-->
+                    <b>Scooters Available: <%=locations[0].numOfDevices%></b>
                     <br><br>
                     
-                    <!-- Price for the Trip based on Start & End Locations -->
-                    <b>Price: $</b>
+                    <!-- Price for the Trip based on Start & End Locations (Will Need to Update based on Selected Start Location)-->
+                    <b>Price: $<%=locations[0].price%></b>
                     <br><br>
                     
                     <button type="submit">Book Route</button>

@@ -72,6 +72,8 @@ Key Issues
 
 Notes 4.22.20 - CV
 Fixed SQL Security Issue
+Added backend for Profile Page (Reads 1st user info, will need to be changed to logined user later)
+Added backend for travel page (Still need to change num scooters & price based on selected start location)
 
 -----------------------
 

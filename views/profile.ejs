@@ -12,7 +12,7 @@
     </nav>
     <main>
         <center>
-            <h2>User's Name (here)</h2>
+            <h2><%=profile.name%></h2>
             
             <form action="/action_page.php" method="post" class="border">
                 <div class="imgcontainer">
@@ -20,9 +20,9 @@
                 </div>
                 
                 <div class="container">
-                    <label for="uname"><b>Username: YOUR USERNAME HERE</b></label><br>
-                    <label for="ename"><b>Email: YOUR EMAIL HERE</b></label><br>
-                    <label for="age"><b>Age: YOUR AGE HERE</b></label>
+                    <label for="uname"><b>Username: <%=profile.username%></b></label><br>
+                    <label for="ename"><b>Email: <%=profile.email%></b></label><br>
+                    <label for="age"><b>Age: <%=profile.age%></b></label>
                     <hr><br><br>
                     
 
