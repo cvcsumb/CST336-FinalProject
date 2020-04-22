@@ -37,6 +37,11 @@ app.get('/travel', function(req, res){
     res.render('travel');
 });
 
+/* The handler for the API route */
+app.get('/api', function(req, res){
+    res.render('api');
+});
+
 /* The handler for the LOCATIONS route */
 app.get('/locations', function(req, res){
     var locationsN, locationsNS, locationsW = null;

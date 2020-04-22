@@ -59,3 +59,27 @@ Added mysql module to Project
 Added backend for Locations Page (Search by Name, Num Scooters, & Weather Now Works)
 
 -----------------------
+
+Notes 4.21.20 - EH
+Added Weather API integration (Later will tailor to the website)
+Key Issues
+	1. Cannot run locally in Cloud 9
+		Need to install mysql and hook up credentials
+	2. Security Feature break from Github
+		SQL File has a security alert
+
+-----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
