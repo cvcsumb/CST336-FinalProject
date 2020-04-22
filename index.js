@@ -10,10 +10,10 @@ app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: '', /*Add your local mysql username*/
-    password: '', /*Add your local mysql password*/
-    database: 'scooterdb'
+    host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'kpyfn44vex96sekym', /*Add your local mysql username*/
+    password: 'ehoi2ti8jouvd9qo', /*Add your local mysql password*/
+    database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
 
@@ -98,6 +98,6 @@ app.get('*', function(req, res){
 });
 
 /* Start the application server */
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3306, function(){
     console.log('Server has been started');
 })
