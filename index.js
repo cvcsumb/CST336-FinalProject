@@ -11,11 +11,19 @@ app.set('view engine', 'ejs');
 /* Configure MySQL DBMS */
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user: 'kpyfn44vex96sekym', /*Add your local mysql username*/
-    password: 'ehoi2ti8jouvd9qo', /*Add your local mysql password*/
+    user: 'kpyfn44vex96sekym',
+    password: 'ehoi2ti8jouvd9qo',
     database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
+/*Local SQL Testing (To Be Deleted Once Project is Done)*/
+/*const connection = mysql.createConnection({
+    host: 'localhost',
+    user: '',
+    password: '',
+    database: 'scooterdb'
+});
+connection.connect();*/
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){

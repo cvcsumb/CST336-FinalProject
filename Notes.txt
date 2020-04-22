@@ -70,7 +70,10 @@ Key Issues
 
 -----------------------
 
+Notes 4.22.20 - CV
+Fixed SQL Security Issue
 
+-----------------------
 
 
 
