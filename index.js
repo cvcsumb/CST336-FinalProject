@@ -2,10 +2,12 @@
 var express = require('express');
 var app = express();
 var mysql = require('mysql');
+var bodyParser = require('body-parser');
 //var request = require('request');
 
 /* Configure our server to read public folder and ejs files */
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
@@ -15,7 +17,7 @@ const connection = mysql.createConnection({
     password: 'ehoi2ti8jouvd9qo',
     database: 'n8df92sdd6bxd4p4'
 });
-connection.connect();*/
+connection.connect();
 /*Local SQL Testing (To Be Deleted Once Project is Done)*/
 /*const connection = mysql.createConnection({
     host: 'localhost',
@@ -33,6 +35,33 @@ app.get('/', function(req, res){
 /* The handler for the CREATE ACCOUNT route */
 app.get('/createaccount', function(req, res){
     res.render('createaccount');
+});
+
+/* Create a new user - Add user into DBMS */
+app.post('/createaccount', function(req, res){
+	console.log(req.body);
+   connection.query('SELECT COUNT(*) FROM users;', function(error, result){
+       if(error) throw error;
+       if(result.length) {
+            var userId = result[0]['COUNT(*)'] + 1;
+            var stmt = 'INSERT INTO users ' +
+                      '(id, name, username, email, age, password) '+
+                      'VALUES ' +
+                      '(' + 
+                       userId + ',"' +
+                       req.body.fname + '","' +
+                       req.body.uname + '","' +
+                       req.body.email + '","' +
+                       req.body.age + '","' +
+                       req.body.psw + '"' +
+                       ');';
+            console.log(stmt);
+            connection.query(stmt, function(error, result){
+                if(error) throw error;
+                res.redirect('/travel');
+            });
+       }
+   });
 });
 
 /* The handler for the PROFILE route */
@@ -114,7 +143,21 @@ app.get('/locationsbyweather', function(req, res){
 
 /* The handler for the ADMIN route */
 app.get('/admin', function(req, res){
-    res.render('admin');
+	var users = null;
+    res.render('admin', {users: users});
+});
+
+app.get('/adminusers', function(req, res){
+    var stmt = 'select * from users where name = \'' 
+                + req.query.fname + '\';';
+	connection.query(stmt, function(error, results){
+	    var users = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        users = results;
+	    }
+	    res.render('admin', {users: users});
+	});
 });
 
 /* The handler for undefined routes */

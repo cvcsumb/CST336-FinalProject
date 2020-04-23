@@ -15,53 +15,66 @@
         <center>
             <h2>Administrator</h2>
             
-            <form action="/action_page.php" method="post" class="border">
-                <div class="container">
-                    <h3><b>Edit Users:</b></h3>
-                    <input type="text" placeholder="Enter Full Name" name="fname" required>
-                    <button type="submit">Search</button>
-                    
-                    <!-- List of Names & Buttons to Delete those Accounts -->
-                </div>
+            <div class="border">
+                <form action="/adminusers" method="GET">
+                    <div class="container">
+                        <h3><b>Edit Users:</b></h3>
+                        <input type="text" placeholder="Enter Full Name" name="fname" required>
+                        <button type="submit">Search</button>
+                        
+                        <!-- List of Names & Buttons to Delete those Accounts -->
+                        <ul>
+                            <%if(users){%>
+                                <%users.forEach(function(user){%>
+                                    <li><%=user.name%> - Edit | Delete</li>
+                                <%});%>
+                            <%}%>
+                        </ul>
+                    </div>
+                </form>
                 <hr>
                 
-                <div class="container">
-                    <h3><b>Update Trip Prices:</b></h3>
-                    <label for="startLocation"><b>From:</b></label>
-                    <select id="startLocation" name="startLocation">
-                        <option value="1stlocation">1st Location</option>
-                        <option value="2ndlocation">2nd Location</option>
-                        <option value="3rdlocation">3rd Location</option>
-                    </select>
-                    
-                    <label for="endLocation"><b>To:</b></label>
-                    <select id="endLocation" name="endLocation">
-                        <option value="1stlocation">1st Location</option>
-                        <option value="2ndlocation">2nd Location</option>
-                        <option value="3rdlocation">3rd Location</option>
-                    </select>
-                    <br><br>
-                    
-                    <label for="price"><b>Price: $</b></label>
-                    <input type="number" step="0.01" min="0.00" placeholder="0.00" name="price" required>
-                    <button type="submit">Set Price</button>
-                </div>
+                <form action="/action_page.php" method="post">
+                    <div class="container">
+                        <h3><b>Update Trip Prices:</b></h3>
+                        <label for="startLocation"><b>From:</b></label>
+                        <select id="startLocation" name="startLocation">
+                            <option value="1stlocation">1st Location</option>
+                            <option value="2ndlocation">2nd Location</option>
+                            <option value="3rdlocation">3rd Location</option>
+                        </select>
+                        
+                        <label for="endLocation"><b>To:</b></label>
+                        <select id="endLocation" name="endLocation">
+                            <option value="1stlocation">1st Location</option>
+                            <option value="2ndlocation">2nd Location</option>
+                            <option value="3rdlocation">3rd Location</option>
+                        </select>
+                        <br><br>
+                        
+                        <label for="price"><b>Price: $</b></label>
+                        <input type="number" step="0.01" min="0.00" placeholder="0.00" name="price" required>
+                        <button type="submit">Set Price</button>
+                    </div>
+                </form>
                 <hr>
-                    
-                <div class="container">
-                    <h3><b>Edit Locations:</b></h3>
-                    <input type="text" placeholder="Enter Location" name="location" required>
-                    <button type="submit">Add Location</button>
-                    
-                    <label for="locations"><b>Locations: </b></label>
-                    <select id="locations" name="locations">
-                        <option value="1stlocation">1st Location</option>
-                        <option value="2ndlocation">2nd Location</option>
-                        <option value="3rdlocation">3rd Location</option>
-                    </select>
-                    <button type="submit" style="background-color: #f44336">Delete Location</button>
-                </div>
-            </form>
+                
+                <form action="/action_page.php" method="post">
+                    <div class="container">
+                        <h3><b>Edit Locations:</b></h3>
+                        <input type="text" placeholder="Enter Location" name="location" required>
+                        <button type="submit">Add Location</button>
+                        
+                        <label for="locations"><b>Locations: </b></label>
+                        <select id="locations" name="locations">
+                            <option value="1stlocation">1st Location</option>
+                            <option value="2ndlocation">2nd Location</option>
+                            <option value="3rdlocation">3rd Location</option>
+                        </select>
+                        <button type="submit" style="background-color: #f44336">Delete Location</button>
+                    </div>
+                </form>
+            </div>
         </center>
     </main>
     <br/>
