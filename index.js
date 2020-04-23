@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
     password: 'ehoi2ti8jouvd9qo',
     database: 'n8df92sdd6bxd4p4'
 });
-connection.connect();
+connection.connect();*/
 /*Local SQL Testing (To Be Deleted Once Project is Done)*/
 /*const connection = mysql.createConnection({
     host: 'localhost',
@@ -51,14 +51,13 @@ app.get('/profile', function(req, res){
 
 /* The handler for the TRAVEL route */
 app.get('/travel', function(req, res){
-    var stmt = 'select * from locations, pricing;';
+    var stmt = 'select * from locations, pricing where locations.id = pricing.id;';
 	connection.query(stmt, function(error, results){
 	    var locations = null;
 	    if(error) throw error;
 	    if (results.length) {
 	        locations = results;
 	    }
-	    console.log(locations);
 	    res.render('travel', {locations: locations});
 	});
 });

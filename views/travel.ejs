@@ -15,14 +15,14 @@
         <center>
             <h2>Book a Scooter</h2>
             
-            <form action="/action_page.php" method="post" class="border">
+            <form action="/" method="post" class="border">
                 <div class="container">
                     <!--Use a for loop in JS to generate dropdown list from database-->
                     <label for="startLocation"><b>Scooting From:</b></label>
                     <select id="startLocation" name="startLocation">
                         <%if(locations){%>
                             <%locations.forEach(function(location){%>
-                                <option value="<%=location.name%>"><%=location.name%></option>
+                                <option value="<%=location.id%>"><%=location.name%></option>
                             <%});%>
                         <%}%>
                     </select>
@@ -37,12 +37,33 @@
                     </select>
                     <br><br>
                     
+                    <!-- Updates Scooters & Price Based on Selected Start Location-->
+                    <script>
+                        $(document).ready(function(){
+                            $("#startLocation").change(function(){
+                                $(this).find("option:selected").each(function(){
+                                    var selectedID = $(this).attr("value");
+                                    
+                                    /*Loop probably not the best way to do this but couldn't get locations[selectedID] to work*/
+                                    <%locations.forEach(function(location){%>
+                                        if (selectedID == <%=location.id%>) {
+                                            $("#scooters").html("Scooters Available: " + <%=location.numOfDevices%>);
+                                            
+                                            var p = <%=location.price%>;
+                                            $("#price").html("Price: $" + p.toFixed(2));
+                                        }
+                                    <%});%>
+                                });
+                            }).change();
+                        });
+                    </script>
+                    
                     <!-- Amount of Scooters Available at Starting Location (Will Need to Update based on Selected Start Location)-->
-                    <b>Scooters Available: <%=locations[0].numOfDevices%></b>
+                    <b id="scooters">Scooters Available: </b>
                     <br><br>
                     
                     <!-- Price for the Trip based on Start & End Locations (Will Need to Update based on Selected Start Location)-->
-                    <b>Price: $<%=locations[0].price%></b>
+                    <b id="price">Price: </b>
                     <br><br>
                     
                     <button type="submit">Book Route</button>
