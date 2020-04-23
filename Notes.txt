@@ -80,6 +80,9 @@ Begun Adding backend for admin page
 
 -----------------------
 
+Notes 4.23.20 - EH
+Modified Weather API to search Marina/Seaside CA weather
+	Later goal: populate the weather conditions when the user purchases its trip to point B.
 
 
 
