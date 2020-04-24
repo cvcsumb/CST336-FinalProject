@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
-/*
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'kpyfn44vex96sekym',
@@ -19,15 +18,14 @@ const connection = mysql.createConnection({
     database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
-*/
 /*Local SQL Testing (To Be Deleted Once Project is Done)*/
-const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'eherndon',
-    password: 'eherndon',
+    user: '',
+    password: '',
     database: 'scooterdb'
 });
-connection.connect();
+connection.connect();*/
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
@@ -41,28 +39,28 @@ app.get('/createaccount', function(req, res){
 
 /* Create a new user - Add user into DBMS */
 app.post('/createaccount', function(req, res){
-	console.log(req.body);
-   connection.query('SELECT COUNT(*) FROM users;', function(error, result){
-       if(error) throw error;
-       if(result.length) {
-            var userId = result[0]['COUNT(*)'] + 1;
-            var stmt = 'INSERT INTO users ' +
-                      '(id, name, username, email, age, password) '+
-                      'VALUES ' +
-                      '(' + 
-                       userId + ',"' +
-                       req.body.fname + '","' +
-                       req.body.uname + '","' +
-                       req.body.email + '","' +
-                       req.body.age + '","' +
-                       req.body.psw + '"' +
-                       ');';
-            console.log(stmt);
-            connection.query(stmt, function(error, result){
-                if(error) throw error;
-                res.redirect('/travel');
-            });
-       }
+	//console.log(req.body);
+	connection.query('SELECT COUNT(*) FROM users;', function(error, result){
+		if(error) throw error;
+		if(result.length) {
+		    var userId = result[0]['COUNT(*)'] + 1;
+		    var stmt = 'INSERT INTO users ' +
+		              '(id, name, username, email, age, password) '+
+		              'VALUES ' +
+		              '(' + 
+		               userId + ',"' +
+		               req.body.fname + '","' +
+		               req.body.uname + '","' +
+		               req.body.email + '","' +
+		               req.body.age + '","' +
+		               req.body.psw + '"' +
+		               ');';
+		    console.log(stmt);
+		    connection.query(stmt, function(error, result){
+		        if(error) throw error;
+		        res.redirect('/travel');
+		    });
+		}
    });
 });
 
@@ -78,6 +76,15 @@ app.get('/profile', function(req, res){
 	    }
 	    res.render('profile', {profile: profile});
 	});
+});
+
+/* Delete a USER from Profile Page*/
+app.get('/profile/:id/delete', function(req, res){
+    var stmt = 'DELETE from users WHERE id='+ req.params.id + ';';
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/');
+    });
 });
 
 /* The handler for the TRAVEL route */

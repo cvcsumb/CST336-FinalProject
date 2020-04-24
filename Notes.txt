@@ -84,13 +84,9 @@ Notes 4.23.20 - EH
 Modified Weather API to search Marina/Seaside CA weather
 	Later goal: populate the weather conditions when the user purchases its trip to point B.
 
+-----------------------
 
+Notes 4.24.20 - CV
+Added backend to delete user on Profile Page (Checks if password is correct before deleting)
 
-
-
-
-
-
-
-
-
+-----------------------
