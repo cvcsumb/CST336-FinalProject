@@ -25,6 +25,10 @@ body {
     text-align: center;
 }
 
+hr {
+    border-color: white;
+}
+
 .bgimgcontainer{
     text-align: left;
 }

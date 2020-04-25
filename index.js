@@ -152,21 +152,100 @@ app.get('/locationsbyweather', function(req, res){
 
 /* The handler for the ADMIN route */
 app.get('/admin', function(req, res){
-	var users = null;
-    res.render('admin', {users: users});
+    var stmt = 'select * from locations, pricing where locations.id = pricing.id;';
+	connection.query(stmt, function(error, results){
+	    var trips = null, users = null, locations = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        trips = results;
+	    }
+	    res.render('admin', {users: users, locations: locations, trips: trips});
+	});
 });
 
 app.get('/adminusers', function(req, res){
     var stmt = 'select * from users where name = \'' 
                 + req.query.fname + '\';';
 	connection.query(stmt, function(error, results){
-	    var users = null;
+	    var users = "noresult", locations = null;
 	    if(error) throw error;
 	    if (results.length) {
 	        users = results;
 	    }
-	    res.render('admin', {users: users});
+	    res.render('admin', {users: users, locations: locations});
 	});
+});
+
+/* Delete a USER from Admin Page*/
+app.get('/admin/:id/deleteuser', function(req, res){
+    var stmt = 'DELETE from users WHERE id='+ req.params.id + ';';
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/admin');
+    });
+});
+
+app.get('/adminlocations', function(req, res){
+    var stmt = 'select * from locations where name = \'' 
+                + req.query.locationName + '\';';
+	connection.query(stmt, function(error, results){
+	    var locations = "noresult", users = null;
+	    if(error) throw error;
+	    if (results.length) {
+	        locations = results;
+	    }
+	    res.render('admin', {users: users, locations: locations});
+	});
+});
+
+/* Delete a location & pricing from Admin Page*/
+app.get('/admin/:id/deletelocation', function(req, res){
+    var stmt = 'DELETE from locations WHERE id='+ req.params.id + ';';
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        var stmt = 'DELETE from pricing WHERE id='+ req.params.id + ';';
+	    connection.query(stmt, function(error, result){
+	        if(error) throw error;
+	        res.redirect('/admin');
+	    });
+    });
+});
+
+/* Create a new location - Add location & pricing into DBMS */
+app.post('/admin/createlocation', function(req, res){
+	connection.query('SELECT COUNT(*) FROM locations;', function(error, result){
+		if(error) throw error;
+		if(result.length) {
+		    var locationId = result[0]['COUNT(*)'] + 1;
+		    var stmt = 'INSERT INTO locations ' +
+		              '(id, name, numOfDevices, api) '+
+		              'VALUES ' +
+		              '(' + 
+		               locationId + ',"' +
+		               req.body.locationName2 + '","' +
+		               req.body.scooters + '","Sunny"' +
+		               ');';
+		    connection.query(stmt, function(error, result){
+		    	//Create an Empty Pricing Entry for New Location
+		        connection.query('SELECT COUNT(*) FROM pricing;', function(error, result){
+					if(error) throw error;
+					if(result.length) {
+					    var priceId = result[0]['COUNT(*)'] + 1;
+					    var stmt = 'INSERT INTO pricing ' +
+					              '(id, price, tax, distance) '+
+					              'VALUES ' +
+					              '(' + 
+					               priceId + ',"0","0","0"' +
+					               ');';
+					    connection.query(stmt, function(error, result){
+							if(error) throw error;
+					        res.redirect('/admin');
+					    });
+					}
+		        });
+		    });
+		}
+   });
 });
 
 /* The handler for undefined routes */
