@@ -7,7 +7,8 @@ foo@bar:~$ npm install --save express
 foo@bar:~$ npm install --save ejs    
 foo@bar:~$ npm install --save body-parser    
 foo@bar:~$ npm install jsdom    
-foo@bar:~$ npm install jquery    
+foo@bar:~$ npm install jquery
+foo@bar:~$ npm install --save mysql    
 foo@bar:~$ npm install --save request       
 foo@bar:~$ mkdir views    
 foo@bar:~$ mkdir views/templates    
@@ -44,7 +45,25 @@ Made design changes to all webpages
 
 Notes 4.20.20 - EH
 Added database
-
+	Attributes of the database involve 3 tables
+	1. locations
+		id
+		name
+		number of devices
+		api
+	2. pricing
+		id
+		price
+		tax
+		distance from point A to point B
+	3. users
+		id
+		name
+		username
+		email
+		age
+		password
+	
 -----------------------
 
 Notes 4.20.20 - CV
@@ -106,3 +125,16 @@ Added backend for updating user & location info on admin page
 Added editlocation & editaccount pages
 
 -----------------------
+
+Notes 4.26.20 - EH
+Updated Notes.txt and Readme
+
+-----------------------
+
+
+
+
+
+
+
+
