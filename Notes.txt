@@ -99,3 +99,9 @@ Update prices dropdowns on admin page now are filled with locations
 	Updating the price has NOT been implemented yet
 
 -----------------------
+
+Notes 4.25.20 - CV
+Added backend for updating pricing on admin page
+Working on adding backend for updating user info (Weird Bug where CSS isn't loaded)
+
+-----------------------

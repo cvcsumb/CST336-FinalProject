@@ -1,0 +1,54 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">LOGIN</a>
+            <a href = "/profile">PROFILE </a>
+            <a href = "/createaccount"><u>CREATE </u></a>
+            <a href = "/travel">TRAVEL </a>
+            <a href = "/locations">LOCATIONS</a>
+            <a href = "/admin">ADMIN</a>
+        </center>
+    </nav>
+    <main>
+        <center>
+            <hr>
+            <h2>Edit Account</h2>
+            
+            <form action="/editaccount" method='POST' class="border">
+                <div class="imgcontainer">
+                    <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                </div>
+                
+                <div class="container">
+                    <label for="fname"><b>Full Name</b></label>
+                    <input type="text" placeholder="Enter your Full Name" id="fname" name="fname" required>
+                    
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+                    
+                    <label for="age"><b>Age</b></label>
+                    <input type="number" min="0" placeholder="Enter Age" name="age" required>
+                    
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    
+                    <label for="psw2"><b>Re-enter Password</b></label>
+                    <input type="password" placeholder="Re-enter Password" name="psw2" required>
+                    
+                    <button>Sign Up</button>
+                </div>
+                
+                <div class="container" style="background-color:#f1f1f1">
+                    <a href="/" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>

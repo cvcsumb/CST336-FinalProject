@@ -3,14 +3,17 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 //var request = require('request');
 
 /* Configure our server to read public folder and ejs files */
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
+/*
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'kpyfn44vex96sekym',
@@ -18,14 +21,15 @@ const connection = mysql.createConnection({
     database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
+*/
 /*Local SQL Testing (To Be Deleted Once Project is Done)*/
-/*const connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: '',
     password: '',
     database: 'scooterdb'
 });
-connection.connect();*/
+connection.connect();
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
@@ -167,12 +171,19 @@ app.get('/adminusers', function(req, res){
     var stmt = 'select * from users where name = \'' 
                 + req.query.fname + '\';';
 	connection.query(stmt, function(error, results){
-	    var users = "noresult", locations = null;
+	    var users = "noresult", locations = null, trips = null;
 	    if(error) throw error;
 	    if (results.length) {
 	        users = results;
 	    }
-	    res.render('admin', {users: users, locations: locations});
+	    var stmt = 'select * from locations, pricing where locations.id = pricing.id;';
+		connection.query(stmt, function(error, results){
+		    if(error) throw error;
+		    if (results.length) {
+		        trips = results;
+		    }
+		    res.render('admin', {users: users, locations: locations, trips: trips});
+		});
 	});
 });
 
@@ -185,16 +196,65 @@ app.get('/admin/:id/deleteuser', function(req, res){
     });
 });
 
+/* Edit a user record - Display a user information */
+app.get('/editaccount/:id', function(req, res){
+	//console.log(req.body);
+    var stmt = 'SELECT * FROM users WHERE id=' + req.params.id + ';';
+    connection.query(stmt, function(error, results){
+    	var user = null;
+		if(error) throw error;
+		if(results.length){
+		   user = results[0];
+		}
+		res.render('editaccount', {user: user});
+    });
+});
+
+/* Edit a User record - Update a User in DBMS */
+app.put('/admin/:id/updateaccount', function(req, res){
+    var stmt = 'UPDATE users SET ' +
+                'name = "'+ req.body.fname + '"' +
+                'username = "'+ req.body.uname + '"' +
+                'email = "'+ req.body.email + '"' +
+                'age = "'+ req.body.age + '"' +
+                'password = "'+ req.body.psw + '"' +
+                'WHERE id = ' + req.params.id + ";";
+    //console.log(stmt);
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/admin');
+    });
+});
+
+/* Edit a price record - Update a Price in DBMS */
+app.put('/admin/updatetrip', function(req, res){
+    var stmt = 'UPDATE pricing SET ' +
+                'price = "'+ req.body.price + '"' +
+                'WHERE id = ' + req.body.startLocation + ";";
+    //console.log(stmt);
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/admin');
+    });
+});
+
 app.get('/adminlocations', function(req, res){
     var stmt = 'select * from locations where name = \'' 
                 + req.query.locationName + '\';';
 	connection.query(stmt, function(error, results){
-	    var locations = "noresult", users = null;
+	    var locations = "noresult", users = null, trips = null;
 	    if(error) throw error;
 	    if (results.length) {
 	        locations = results;
 	    }
-	    res.render('admin', {users: users, locations: locations});
+	    var stmt = 'select * from locations, pricing where locations.id = pricing.id;';
+		connection.query(stmt, function(error, results){
+		    if(error) throw error;
+		    if (results.length) {
+		        trips = results;
+		    }
+		    res.render('admin', {users: users, locations: locations, trips: trips});
+		});
 	});
 });
 

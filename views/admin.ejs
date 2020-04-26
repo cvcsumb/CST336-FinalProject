@@ -26,7 +26,7 @@
                         <ul>
                             <%if(users != null && users != "noresult"){%>
                                 <%users.forEach(function(user){%>
-                                    <li><%=user.name%> - Edit | <a href='/admin/<%=user.id%>/deleteuser'>Delete</a></li>
+                                    <li><%=user.name%> - <a href='/editaccount/<%=user.id%>'>Edit</a> | <a href='/admin/<%=user.id%>/deleteuser'>Delete</a></li>
                                 <%});%>
                             <%} else if (users == "noresult") {%>
                                 No user under that name exists.
@@ -64,12 +64,15 @@
                                     $(this).find("option:selected").each(function(){
                                         var selectedID = $(this).attr("value");
                                         
-                                        <%trips.forEach(function(trip){%>
-                                            if (selectedID == <%=trip.id%>) {
-                                                var p = <%=trip.price%>;
-                                                $("#price").val(p.toFixed(2));
-                                            }
-                                        <%});%>
+                                        <%if(trips){%>
+                                            <%trips.forEach(function(trip){%>
+                                                if (selectedID == <%=trip.id%>) {
+                                                    var p = <%=trip.price%>;
+                                                    $("#price").val(p.toFixed(2));
+                                                    $("#id").html(selectedID);
+                                                }
+                                            <%});%>
+                                        <%}%>
                                     });
                                 }).change();
                             });
