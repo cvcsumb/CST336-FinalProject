@@ -26,7 +26,7 @@
                         <ul>
                             <%if(users != null && users != "noresult"){%>
                                 <%users.forEach(function(user){%>
-                                    <li><%=user.name%> - <a href='/editaccount/<%=user.id%>'>Edit</a> | <a href='/admin/<%=user.id%>/deleteuser'>Delete</a></li>
+                                    <li><%=user.name%> - <a href='/admin/<%=user.id%>/edituser'>Edit</a> | <a href='/admin/<%=user.id%>/deleteuser'>Delete</a></li>
                                 <%});%>
                             <%} else if (users == "noresult") {%>
                                 No user under that name exists.
@@ -95,7 +95,7 @@
                         <ul>
                             <%if(locations != null && locations != "noresult"){%>
                                 <%locations.forEach(function(location){%>
-                                    <li><%=location.name%> - Edit | <a href='/admin/<%=location.id%>/deletelocation'>Delete</a></li>
+                                    <li><%=location.name%> - <a href='/admin/<%=location.id%>/editlocation'>Edit</a> | <a href='/admin/<%=location.id%>/deletelocation'>Delete</a></li>
                                 <%});%>
                             <%} else if (locations == "noresult") {%>
                                 No location under that name exists.

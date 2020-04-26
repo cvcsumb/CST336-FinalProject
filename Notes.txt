@@ -102,6 +102,7 @@ Update prices dropdowns on admin page now are filled with locations
 
 Notes 4.25.20 - CV
 Added backend for updating pricing on admin page
-Working on adding backend for updating user info (Weird Bug where CSS isn't loaded)
+Added backend for updating user & location info on admin page
+Added editlocation & editaccount pages
 
 -----------------------

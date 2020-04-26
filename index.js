@@ -13,7 +13,6 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
-/*
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'kpyfn44vex96sekym',
@@ -21,15 +20,14 @@ const connection = mysql.createConnection({
     database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
-*/
 /*Local SQL Testing (To Be Deleted Once Project is Done)*/
-const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
     host: 'localhost',
     user: '',
     password: '',
     database: 'scooterdb'
 });
-connection.connect();
+connection.connect();*/
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
@@ -197,7 +195,7 @@ app.get('/admin/:id/deleteuser', function(req, res){
 });
 
 /* Edit a user record - Display a user information */
-app.get('/editaccount/:id', function(req, res){
+app.get('/admin/:id/edituser', function(req, res){
 	//console.log(req.body);
     var stmt = 'SELECT * FROM users WHERE id=' + req.params.id + ';';
     connection.query(stmt, function(error, results){
@@ -213,10 +211,10 @@ app.get('/editaccount/:id', function(req, res){
 /* Edit a User record - Update a User in DBMS */
 app.put('/admin/:id/updateaccount', function(req, res){
     var stmt = 'UPDATE users SET ' +
-                'name = "'+ req.body.fname + '"' +
-                'username = "'+ req.body.uname + '"' +
-                'email = "'+ req.body.email + '"' +
-                'age = "'+ req.body.age + '"' +
+                'name = "'+ req.body.fname + '",' +
+                'username = "'+ req.body.uname + '",' +
+                'email = "'+ req.body.email + '",' +
+                'age = "'+ req.body.age + '",' +
                 'password = "'+ req.body.psw + '"' +
                 'WHERE id = ' + req.params.id + ";";
     //console.log(stmt);
@@ -256,6 +254,32 @@ app.get('/adminlocations', function(req, res){
 		    res.render('admin', {users: users, locations: locations, trips: trips});
 		});
 	});
+});
+
+/* Edit a location record - Display a location information */
+app.get('/admin/:id/editlocation', function(req, res){
+    var stmt = 'SELECT * FROM locations WHERE id=' + req.params.id + ';';
+    connection.query(stmt, function(error, results){
+    	var location = null;
+		if(error) throw error;
+		if(results.length){
+		   location = results[0];
+		}
+		res.render('editlocation', {location: location});
+    });
+});
+
+/* Edit a Location record - Update a Location in DBMS */
+app.put('/admin/:id/updatelocation', function(req, res){
+    var stmt = 'UPDATE locations SET ' +
+                'name = "'+ req.body.name + '",' +
+                'numOfDevices = "'+ req.body.scooters + '"' +
+                'WHERE id = ' + req.params.id + ";";
+    //console.log(stmt);
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/admin');
+    });
 });
 
 /* Delete a location & pricing from Admin Page*/

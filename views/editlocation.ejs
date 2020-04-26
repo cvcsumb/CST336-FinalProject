@@ -1,0 +1,42 @@
+<%- include ('templates/header'); -%>
+
+    <nav class = "nava">
+        <center>
+            <hr width="50%" />
+            <a href = "/">LOGIN</a>
+            <a href = "/profile">PROFILE </a>
+            <a href = "/createaccount"><u>CREATE </u></a>
+            <a href = "/travel">TRAVEL </a>
+            <a href = "/locations">LOCATIONS</a>
+            <a href = "/admin">ADMIN</a>
+        </center>
+    </nav>
+    <main>
+        <center>
+            <hr>
+            <h2>Edit Location</h2>
+            
+            <form action="/admin/<%=location.id%>/updatelocation?_method=PUT" method='POST' class="border">
+                <div class="imgcontainer">
+                    <img src="/img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                </div>
+                
+                <div class="container">
+                    <label for="name"><b>Location Name</b></label>
+                    <input type="text" placeholder="Enter Location Name" id="name" name="name" value='<%=location.name%>' required>
+                    
+                    <label for="scooters"><b>Number of Scooters</b></label>
+                    <input type="number" min="0" placeholder="Enter Number of Scooters" name="scooters" value='<%=location.numOfDevices%>' required>
+                    
+                    <button>Save Changes</button>
+                </div>
+                
+                <div class="container" style="background-color:#f1f1f1">
+                    <a href="/admin" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+        </center>
+    </main>
+    <br/>
+
+<%- include ('templates/footer'); -%>
