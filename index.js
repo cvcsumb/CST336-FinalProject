@@ -13,6 +13,7 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
+
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'kpyfn44vex96sekym',
@@ -103,9 +104,11 @@ app.get('/travel', function(req, res){
 });
 
 /* The handler for the API route */
+/*
 app.get('/api', function(req, res){
     res.render('api');
 });
+*/
 
 /* The handler for the LOCATIONS route */
 app.get('/locations', function(req, res){

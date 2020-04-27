@@ -131,6 +131,13 @@ Updated Notes.txt and Readme
 
 -----------------------
 
+Notes 4.27.20 - EH
+Removed api.ejs page from navigation
+Integrated api button to travel.ejs
+	Due note, when booking a route it takes user to profile page
+
+-----------------------
+
 
 
 
