@@ -15,7 +15,7 @@
         <center>
             <h2>Book a Scooter</h2>
             
-            <form action="/profile" method="GET" class="border">
+            <form action="/travel" method="GET" class="border">
                 <div class="container">
                     <!--Use a for loop in JS to generate dropdown list from database-->
                     <label for="startLocation"><b>Scooting From:</b></label>
@@ -40,6 +40,7 @@
                     <!-- Updates Scooters & Price Based on Selected Start Location-->
                     <script>
                         $(document).ready(function(){
+                            searchSeasideWeather()//Weather API function called here - EH
                             $("#startLocation").change(function(){
                                 $(this).find("option:selected").each(function(){
                                     var selectedID = $(this).attr("value");
@@ -66,25 +67,18 @@
                     <b id="price">Price: </b>
                     <br><br>
                     
-                    <div class="search">
-                <!-- Original    <button type="submit" onclick="searchSeasideWeather()" id = "sw">Book Route</button> -->
-                    <button onclick="searchSeasideWeather()" id = "sw">Book Route</button>
-                    <br>
-                    Check Seaside Weather:
-                    <button onclick="searchSeasideWeather()" id = "sw"> Search </button>
-                    </div>
-                    <br>
-                    <br>
+                    <button type = "submit" >Book Route</button>
+                    <!-- This section is the weather api results -EH -->
                     <br>
                     <br>
                     <center>
-               
                     <div class="result">  
                     <div id="result1"></div>
                     <div id="result2"></div>
                     <div id="result3"></div>
                     </div>
                     </center>
+                     <!-- ----------------------------------------- -->
                     
                 </div>
             </form>

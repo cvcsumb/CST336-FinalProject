@@ -138,6 +138,16 @@ Integrated api button to travel.ejs
 
 -----------------------
 
+Notes 4.27.20 - EH
+Full weather api integration to Travel.ejs
+	Fixed issue on Travel.ejs line 18
+	from
+	<form action="/profile" method="GET" class="border">
+	to
+	<form action="/travel" method="GET" class="border">
+	for now its ok, but will need a new route for confirmation.
+
+-----------------------
 
 
 
