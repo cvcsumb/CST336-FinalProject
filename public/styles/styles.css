@@ -18,6 +18,10 @@ h2 {
     color: white;
 }
 
+.bookconfirm{
+    font-family: 'Bangers', cursive;
+}
+
 body {
     margin: 50px 0px auto auto;
     text-align: center;
