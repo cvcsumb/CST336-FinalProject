@@ -12,8 +12,8 @@ Submission Date: 5-4-2020
 
 <thead>
 <tr>
-<th align="center"><a href="https://github.com/HerndonE"><img src="https://avatars2.githubusercontent.com/u/16469939?s=460&v=4" width="100px;" style="max-width:100%;"><sub><b>Ethan Herndon</b></sub></a><br></th><br>
-<th align="center"><a href="https://github.com/mmemon21"><img src="https://avatars0.githubusercontent.com/u/56463794?s=460&u=12e9d17ffa8cbeb67f596e9fceca0a724a35e98e&v=4" width="100px;" style="max-width:100%;"><sub><b>Mustafa Memon</b></sub></a><br></th><br>
-<th align="center"><a href="https://github.com/cvcsumb"><img src="https://avatars3.githubusercontent.com/u/46950170?s=460&u=5d20259656411cc51335db20f58ec5283c6767c4&v=4" width="100px;" style="max-width:100%;"><sub><b>Claudio Vertemara</b></sub></a><br></th>
+<th align="center"><a href="https://github.com/HerndonE"><img src="https://avatars2.githubusercontent.com/u/16469939?s=460&v=4" width="100px;" style="max-width:100%;"><sub><br><b>Ethan Herndon</b></sub></a><br></th><br>
+<th align="center"><a href="https://github.com/mmemon21"><img src="https://avatars0.githubusercontent.com/u/56463794?s=460&u=12e9d17ffa8cbeb67f596e9fceca0a724a35e98e&v=4" width="100px;" style="max-width:100%;"><sub><br><b>Mustafa Memon</b></sub></a><br></th><br>
+<th align="center"><a href="https://github.com/cvcsumb"><img src="https://avatars3.githubusercontent.com/u/46950170?s=460&u=5d20259656411cc51335db20f58ec5283c6767c4&v=4" width="100px;" style="max-width:100%;"><sub><br><b>Claudio Vertemara</b></sub></a><br></th>
 </tr>
 </thead>
