@@ -108,8 +108,16 @@ img.avatar {
 }
 
 .container {
-    padding: 16px;
+    border: 0px solid #fff;
+    padding: 20px;
     color: #F65900;
+}
+
+.float-child{
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: 0px;
 }
 
 span.psw {
