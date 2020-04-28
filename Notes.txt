@@ -152,10 +152,19 @@ Full weather api integration to Travel.ejs
 Notes 4.27.20 - MM
 Added bookconfirm.ejs
 Made some changes on styles.css.
-Travel.ejs
-	Line 18 changed <form action="/profile" method="GET" class="border"> to
+Travel.ejs <Added confirmation route> Line 18 changed
+	<form action="/profile" method="GET" class="border"> 
+	to
 	<form action="/bookconfirm" method="GET" class="border">
+	
+-----------------------
 
+Notes 4.27.20 - MM
+Made some designing changes in createaccount.ejs
+	Added float-containers for input fields
+Made some changes to styles.css
+
+-----------------------
 
 
 
