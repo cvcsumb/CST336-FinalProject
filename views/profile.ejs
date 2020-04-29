@@ -14,35 +14,33 @@
         <center>
             <h2><%=profile.name%></h2>
             
-            <script>
-                function validatePassword() {
-                    if ($("#psw").val() == "<%=profile.password%>") {
-                        return true;
-                    } else {
-                        $("#pswlab").html("<b>Password is Incorrect.<b>");
-                        return false;
-                    }
-                }
-            </script>
-            
-            <form action="/profile/<%=profile.id%>/delete" method="GET" onsubmit="return validatePassword();" class="border">
+            <form action="/profile/<%=profile.id%>/checkdelete" method="POST" class="border">
                 <div class="imgcontainer">
-                    <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
+                    <img src="/img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
                 </div>
                 
                 <div class="container">
                     <label for="uname"><b>Username: <%=profile.username%></b></label><br>
                     <label for="ename"><b>Email: <%=profile.email%></b></label><br>
-                    <label for="age"><b>Age: <%=profile.age%></b></label>
+                    <label for="age"><b>Age: <%=profile.age%></b></label><br>
+                    <a class='btn btn-danger' href='/logout'>Logout</a>
                     <hr><br><br>
                     
                     
                     <h3><b>DELETE YOUR ACCOUNT?</b></h3><br>
                     
+                    <%if(typeof error != 'undefined' && error){%>
+                        <h6 style='color: red;'> Incorrect password! </h6>
+                	<%}%>
+                    
                     <label for="psw" id="pswlab"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
                     
-                    <button type="delete" style="background-color: #f44336">Delete Account</button>
+                    <% if (profile.username == "admin") {%>
+                        <button type="delete" style="background-color: #808080" disabled >Delete Account</button>
+                    <%} else {%>
+                        <button type="delete" style="background-color: #f44336">Delete Account</button>
+                    <%}%>
                 </div>
             </form>
         </center>

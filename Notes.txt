@@ -166,6 +166,24 @@ Made some changes to styles.css
 
 -----------------------
 
+Notes 4.29.20 - CV
+Fixed Issue where if you delete something from db and then add to it, it breaks.
+Added login backend.
+Updated database users table with bcrypted passwords
+Added special account 'admin' to users table
+When admin logs in, they are directed to admin page instead of travel page
+Users are redirected to login page if they try to access certain pages if they are not logged in.
+Only admin can access admin page, other users redirected to travel page.
+Passwords now get bcrypted when new account created.
+Updated check password to delete account on profile page to work with new bcrypted passwords.
+Updated Update account info to work with update new passwords.
+Added logout buttons to profile page and admin page.
+Added alert on create account page when two passwords don't match.
 
+Which Pages Users Can Acces based on their state:
+Not Logged in: Login, Create Account, & Locations Page
+Logged In (Normal User): All Pages Except Admin Page
+Logged In (Admin): All Pages
+(We Will need to update nav based on this).
 
-
+-----------------------

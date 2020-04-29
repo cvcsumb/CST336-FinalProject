@@ -109,34 +109,35 @@ CREATE TABLE `users` (
   `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `age` int(3) NOT NULL,
-  `password` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+  `password` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
+/*User Passwords are intials and 'pass' (Nick Patterson: nppass)*/
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `age`, `password`) VALUES
-(1, 'Geoffrey Delgado', 'gdun', 'email@email.com', 42, 'gdpass'),
-(2, 'Nick Patterson', 'npun', 'email@email.com', 15, 'nppass'),
-(3, 'Simon Ward', 'swun', 'email@email.com', 31, 'swpass'),
-(4, 'Kristy Lucas', 'klun', 'email@email.com', 99, 'klpass'),
-(5, 'Craig Miller', 'cmun', 'email@email.com', 23, 'cmpass'),
-(6, 'Joanne Barton', 'jbun', 'email@email.com', 42, 'jbpass'),
-(7, 'Helen Sanders', 'hsun', 'email@email.com', 50, 'hspass'),
-(8, 'Jimmy Tucker', 'jtun', 'email@email.com', 18, 'jtpass'),
-(9, 'Sara Vega', 'svun', 'email@email.com', 76, 'svpass'),
-(10, 'Vincent Rowe', 'vrun', 'email@email.com', 19, 'vrpass'),
-(11, 'Madeline Ramsey', 'mrun', 'email@email.com', 34, 'mrpass'),
-(12, 'Bradford Moody', 'bmun', 'email@email.com', 46, 'bmpass'),
-(13, 'Billie Walker', 'bwun', 'email@email.com', 23, 'bwpass'),
-(14, 'Richard Wilkerson', 'rwun', 'email@email.com', 27, 'rwpass'),
-(15, 'Stacy Lewis', 'slun', 'email@email.com', 67, 'slpass'),
-(16, 'Ginger Mitchell', 'gmun', 'email@email.com', 43, 'gmpass'),
-(17, 'Felix Webster', 'fwun', 'email@email.com', 22, 'fwpass'),
-(18, 'Miriam Hansen', 'mhun', 'email@email.com', 33, 'mhpass'),
-(19, 'June Flores', 'jfun', 'email@email.com', 88, 'jfpass'),
-(20, 'Derek Reese', 'drun', 'email@email.com', 17, 'drpass');
+(1, 'Administrator', 'admin', 'admin@email.com', 0, '$2b$10$4vtZemAhmyPo9MH72VuyLu2zZj38iQ5uFe/vne1vFINUyFsRO1FJ.'),
+(2, 'Nick Patterson', 'npun', 'email@email.com', 15, '$2b$10$KQl2WS7.a8nQ1c9AbYmmVuRkKSOm5kFl2ljvtZFfys7XuxNTDkzDW'),
+(3, 'Simon Ward', 'swun', 'email@email.com', 31, '$2b$10$e2U3ItLff2MjeYe6EiLjK.OuA4OJESmcnCvjOuZVeOClPbpQyY5fK'),
+(4, 'Kristy Lucas', 'klun', 'email@email.com', 99, '$2b$10$0FMK.CusGwN3PVXjvMfv/OYLQ9RmKK45sJs0So8aWiqNHQ.azpeei'),
+(5, 'Craig Miller', 'cmun', 'email@email.com', 23, '$2b$10$nqxUR/.i91Hf6G8eXUn/Eeed6NX0FpVUHM9Rld1UislztO8l45tZ6'),
+(6, 'Joanne Barton', 'jbun', 'email@email.com', 42, '$2b$10$98i70RNOpwOj9tqA0NyIxuZo33Sggxk8ns85vFQb.BZ8j3JhEuj5q'),
+(7, 'Helen Sanders', 'hsun', 'email@email.com', 50, '$2b$10$Y3pgyZr7RgjacIULyVCylu48ZOSEXgHJuLnIQwBv0vxUOqTbPKuDW'),
+(8, 'Jimmy Tucker', 'jtun', 'email@email.com', 18, '$2b$10$QdQ/Klvh5.pHel/x1T0eDuPwF7npNcgCXwkL4K3Xo0qOiTgYbtD/W'),
+(9, 'Sara Vega', 'svun', 'email@email.com', 76, '$2b$10$Uks7Cr7wb/ZYWpv1Eh6hBOrIPSXh7N8kRhIQDCNCSx3Z9xkmey6gC'),
+(10, 'Vincent Rowe', 'vrun', 'email@email.com', 19, '$2b$10$ubP/iBbdgkUPkwzYOIfjLe0GDtR3Y9TS65OXTNOc4p3xGmZt7H5ki'),
+(11, 'Madeline Ramsey', 'mrun', 'email@email.com', 34, '$2b$10$4uBNLvOhApg.urRJhhL4ueiIMPFNTIA01s4DB2s9dV8UZ2S67NFPW'),
+(12, 'Bradford Moody', 'bmun', 'email@email.com', 46, '$2b$10$xVQl1r2YGFzxWdTuF/n13um9Q14tyUp3dSdZC2RI3QYMtwM1ahaCq'),
+(13, 'Billie Walker', 'bwun', 'email@email.com', 23, '$2b$10$1nFpEjkPC5aTNkXg55e1/Op6Vo7SQXBE6z1Noh4e8Gk3cLVZr7oVK'),
+(14, 'Richard Wilkerson', 'rwun', 'email@email.com', 27, '$2b$10$TzdiJnoCAVS78FxEIbNpPORt2/bgwjqel7RaNTfgEctvK2fcb.gT6'),
+(15, 'Stacy Lewis', 'slun', 'email@email.com', 67, '$2b$10$qIbOvQyQVXV1HutBUfWKo.bB34MHiWPpIdJgO0bCUxz8mOIDNnYu2'),
+(16, 'Ginger Mitchell', 'gmun', 'email@email.com', 43, '$2b$10$y9ki0V.FS1MVhDMuJdPTB.vTW5RjgJbnUXkMIKWjBZkJjW9Vo0HA.'),
+(17, 'Felix Webster', 'fwun', 'email@email.com', 22, '$2b$10$XgLH2BqZXWE5nENyH/psAuv9wOm71Ku4fv36axJrCxSOOu3NoVtL.'),
+(18, 'Miriam Hansen', 'mhun', 'email@email.com', 33, '$2b$10$3awHd6Tt8L7awaH7ZRIbP.ToA83yptkiIw2q/inJb3/N1BEBCW8Tu'),
+(19, 'June Flores', 'jfun', 'email@email.com', 88, '$2b$10$ehf6w7qKJtjv6ESQ7E0BseXXBjW0O.KMYKzvBpXgQRGIki/pPxkXq'),
+(20, 'Derek Reese', 'drun', 'email@email.com', 17, '$2b$10$zvR2DOZzIr/img3MWKpmRO8r.VNKON56X71fWp3r8hC6DCXk82.Ie');
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;

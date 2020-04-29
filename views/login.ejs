@@ -17,7 +17,11 @@
         <center>
             <h2>Login Page</h2>
             
-            <form action="/action_page.php" method="post" class="border">
+            <%if(typeof error != 'undefined' && error){%>
+                <h6 style='color: red;'> Incorrect login credentials! </h6>
+        	<%}%>
+            
+            <form action="/login" method="POST" class="border">
                 <div class="imgcontainer">
                     <img src="img/img_avatar.png" alt="Avatar" class="avatar"style="width:200px;height:200px;">
                 </div>

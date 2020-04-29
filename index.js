@@ -4,16 +4,22 @@ var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var session = require('express-session');
+var bcrypt = require('bcrypt');
 //var request = require('request');
 
 /* Configure our server to read public folder and ejs files */
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use(session({
+    secret: 'top secret code!',
+    resave: true,
+    saveUninitialized: true
+}));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
-
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'kpyfn44vex96sekym',
@@ -21,7 +27,7 @@ const connection = mysql.createConnection({
     database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
-/*Local SQL Testing (To Be Deleted Once Project is Done)*/
+//Local SQL Testing (To Be Deleted Once Project is Done)
 /*const connection = mysql.createConnection({
     host: 'localhost',
     user: '',
@@ -30,9 +36,70 @@ connection.connect();
 });
 connection.connect();*/
 
+/* Middleware */
+function isAuthenticated(req, res, next){
+    if(!req.session.authenticated) res.redirect('/');
+    else next();
+}
+
+function isAdmin(req, res, next){
+    if(!req.session.authenticated) res.redirect('/');
+    else { 
+    	//Checks if User is Admin
+    	if (req.session.user == 1) {
+    		next();
+    	} else {
+    		res.redirect('/travel');
+    	}
+    }
+}
+
+function checkUsername(username){
+    let stmt = 'SELECT * FROM users WHERE username=?';
+    return new Promise(function(resolve, reject){
+       connection.query(stmt, [username], function(error, results){
+           if(error) throw error;
+           resolve(results);
+       }); 
+    });
+}
+
+function checkPassword(password, hash){
+    return new Promise(function(resolve, reject){
+       bcrypt.compare(password, hash, function(error, result){
+          if(error) throw error;
+          resolve(result);
+       }); 
+    });
+}
+
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
     res.render('login');
+});
+
+app.post('/login', async function(req, res){
+    let isUserExist   = await checkUsername(req.body.uname);
+    let hashedPasswd  = isUserExist.length > 0 ? isUserExist[0].password : '';
+    let passwordMatch = await checkPassword(req.body.psw, hashedPasswd);
+    if(passwordMatch){
+        req.session.authenticated = true;
+        req.session.user = isUserExist[0].id;
+        if (req.body.uname == "admin") {
+        	res.redirect('/admin');
+        } else {
+        	res.redirect('/travel');
+        }
+    }
+    else{
+        res.render('login', {error: true});
+    }
+});
+
+/* Logout Route */
+app.get('/logout', function(req, res){
+   req.session.destroy();
+   res.redirect('/');
 });
 
 /* The handler for the CREATE ACCOUNT route */
@@ -42,35 +109,30 @@ app.get('/createaccount', function(req, res){
 
 /* Create a new user - Add user into DBMS */
 app.post('/createaccount', function(req, res){
-	//console.log(req.body);
-	connection.query('SELECT COUNT(*) FROM users;', function(error, result){
+	let salt = 10;
+	bcrypt.hash(req.body.psw, salt, function(error, hash){
 		if(error) throw error;
-		if(result.length) {
-		    var userId = result[0]['COUNT(*)'] + 1;
-		    var stmt = 'INSERT INTO users ' +
-		              '(id, name, username, email, age, password) '+
-		              'VALUES ' +
-		              '(' + 
-		               userId + ',"' +
-		               req.body.fname + '","' +
-		               req.body.uname + '","' +
-		               req.body.email + '","' +
-		               req.body.age + '","' +
-		               req.body.psw + '"' +
-		               ');';
-		    console.log(stmt);
-		    connection.query(stmt, function(error, result){
-		        if(error) throw error;
-		        res.redirect('/travel');
-		    });
-		}
-   });
+		connection.query('SELECT * FROM users;', function(error, result){
+			if(error) throw error;
+			if(result.length) {
+			    var userId = result[result.length - 1].id + 1;
+			    var stmt = 'INSERT INTO users (id, name, username, email, age,' + 
+			    		   'password) VALUES (?, ?, ?, ?, ?, ?)';
+			    var data = [userId, req.body.fname, req.body.uname, req.body.email, req.body.age, hash];
+			    console.log(stmt);
+			    connection.query(stmt, data, function(error, result){
+			        if(error) throw error;
+			        res.redirect('/');
+			    });
+			}
+	   });
+	});
 });
 
 /* The handler for the PROFILE route */
-app.get('/profile', function(req, res){
+app.get('/profile', isAuthenticated, function(req, res){
 	/*Will need to get logined user when login stuff is set up*/
-    var stmt = 'select * from users;';
+    var stmt = 'select * from users where id=' + req.session.user + ';';
 	connection.query(stmt, function(error, results){
 	    var profile = null;
 	    if(error) throw error;
@@ -81,8 +143,24 @@ app.get('/profile', function(req, res){
 	});
 });
 
+/* Check USER Password before Deletion from Profile Page*/
+app.post('/profile/:id/checkdelete', isAuthenticated, function(req, res){
+    var stmt = 'Select * from users WHERE id='+ req.params.id + ';';
+    connection.query(stmt, async function(error, result){
+        if(error) throw error;
+        if (result.length) {
+        	let passwordMatch = await checkPassword(req.body.psw, result[0].password);
+    		if (passwordMatch){
+    			res.redirect('/profile/' + req.params.id + '/delete');
+    		} else {
+    			res.render('profile', {profile: result[0], error: true});
+    		}
+        }
+    });
+});
+
 /* Delete a USER from Profile Page*/
-app.get('/profile/:id/delete', function(req, res){
+app.get('/profile/:id/delete', isAuthenticated, function(req, res){
     var stmt = 'DELETE from users WHERE id='+ req.params.id + ';';
     connection.query(stmt, function(error, result){
         if(error) throw error;
@@ -91,7 +169,7 @@ app.get('/profile/:id/delete', function(req, res){
 });
 
 /* The handler for the TRAVEL route */
-app.get('/travel', function(req, res){
+app.get('/travel', isAuthenticated, function(req, res){
     var stmt = 'select * from locations, pricing where locations.id = pricing.id;';
 	connection.query(stmt, function(error, results){
 	    var locations = null;
@@ -156,7 +234,7 @@ app.get('/locationsbyweather', function(req, res){
 });
 
 /* The handler for the ADMIN route */
-app.get('/admin', function(req, res){
+app.get('/admin', isAdmin, function(req, res){
     var stmt = 'select * from locations, pricing where locations.id = pricing.id;';
 	connection.query(stmt, function(error, results){
 	    var trips = null, users = null, locations = null;
@@ -168,7 +246,7 @@ app.get('/admin', function(req, res){
 	});
 });
 
-app.get('/adminusers', function(req, res){
+app.get('/adminusers', isAdmin, function(req, res){
     var stmt = 'select * from users where name = \'' 
                 + req.query.fname + '\';';
 	connection.query(stmt, function(error, results){
@@ -189,7 +267,7 @@ app.get('/adminusers', function(req, res){
 });
 
 /* Delete a USER from Admin Page*/
-app.get('/admin/:id/deleteuser', function(req, res){
+app.get('/admin/:id/deleteuser', isAdmin, function(req, res){
     var stmt = 'DELETE from users WHERE id='+ req.params.id + ';';
     connection.query(stmt, function(error, result){
         if(error) throw error;
@@ -198,7 +276,7 @@ app.get('/admin/:id/deleteuser', function(req, res){
 });
 
 /* Edit a user record - Display a user information */
-app.get('/admin/:id/edituser', function(req, res){
+app.get('/admin/:id/edituser', isAdmin, function(req, res){
 	//console.log(req.body);
     var stmt = 'SELECT * FROM users WHERE id=' + req.params.id + ';';
     connection.query(stmt, function(error, results){
@@ -212,23 +290,37 @@ app.get('/admin/:id/edituser', function(req, res){
 });
 
 /* Edit a User record - Update a User in DBMS */
-app.put('/admin/:id/updateaccount', function(req, res){
+app.put('/admin/:id/updateaccount', isAdmin, function(req, res){
     var stmt = 'UPDATE users SET ' +
                 'name = "'+ req.body.fname + '",' +
                 'username = "'+ req.body.uname + '",' +
-                'email = "'+ req.body.email + '",' +
-                'age = "'+ req.body.age + '",' +
-                'password = "'+ req.body.psw + '"' +
-                'WHERE id = ' + req.params.id + ";";
-    //console.log(stmt);
-    connection.query(stmt, function(error, result){
-        if(error) throw error;
-        res.redirect('/admin');
-    });
+                'email = "'+ req.body.email + '",';
+    if (req.body.psw != "") {
+    	let salt = 10;
+		bcrypt.hash(req.body.psw, salt, function(error, hash){
+			if(error) throw error;
+    		stmt += 'password = "'+ hash + '",' +
+    				'age = "'+ req.body.age + '"' + 
+    				'WHERE id = ' + req.params.id + ";";
+    		console.log(req.body.psw, hash);
+    		connection.query(stmt, function(error, result){
+		        if(error) throw error;
+		        res.redirect('/admin');
+		    });
+		});
+    } else {
+    	stmt += 'age = "'+ req.body.age + '"' + 
+	    		'WHERE id = ' + req.params.id + ";";
+	    //console.log(stmt);
+	    connection.query(stmt, function(error, result){
+	        if(error) throw error;
+	        res.redirect('/admin');
+	    });
+    }
 });
 
 /* Edit a price record - Update a Price in DBMS */
-app.put('/admin/updatetrip', function(req, res){
+app.put('/admin/updatetrip', isAdmin, function(req, res){
     var stmt = 'UPDATE pricing SET ' +
                 'price = "'+ req.body.price + '"' +
                 'WHERE id = ' + req.body.startLocation + ";";
@@ -239,7 +331,7 @@ app.put('/admin/updatetrip', function(req, res){
     });
 });
 
-app.get('/adminlocations', function(req, res){
+app.get('/adminlocations', isAdmin, function(req, res){
     var stmt = 'select * from locations where name = \'' 
                 + req.query.locationName + '\';';
 	connection.query(stmt, function(error, results){
@@ -260,7 +352,7 @@ app.get('/adminlocations', function(req, res){
 });
 
 /* Edit a location record - Display a location information */
-app.get('/admin/:id/editlocation', function(req, res){
+app.get('/admin/:id/editlocation', isAdmin, function(req, res){
     var stmt = 'SELECT * FROM locations WHERE id=' + req.params.id + ';';
     connection.query(stmt, function(error, results){
     	var location = null;
@@ -273,7 +365,7 @@ app.get('/admin/:id/editlocation', function(req, res){
 });
 
 /* Edit a Location record - Update a Location in DBMS */
-app.put('/admin/:id/updatelocation', function(req, res){
+app.put('/admin/:id/updatelocation', isAdmin, function(req, res){
     var stmt = 'UPDATE locations SET ' +
                 'name = "'+ req.body.name + '",' +
                 'numOfDevices = "'+ req.body.scooters + '"' +
@@ -286,7 +378,7 @@ app.put('/admin/:id/updatelocation', function(req, res){
 });
 
 /* Delete a location & pricing from Admin Page*/
-app.get('/admin/:id/deletelocation', function(req, res){
+app.get('/admin/:id/deletelocation', isAdmin, function(req, res){
     var stmt = 'DELETE from locations WHERE id='+ req.params.id + ';';
     connection.query(stmt, function(error, result){
         if(error) throw error;
@@ -299,11 +391,11 @@ app.get('/admin/:id/deletelocation', function(req, res){
 });
 
 /* Create a new location - Add location & pricing into DBMS */
-app.post('/admin/createlocation', function(req, res){
-	connection.query('SELECT COUNT(*) FROM locations;', function(error, result){
+app.post('/admin/createlocation', isAdmin, function(req, res){
+	connection.query('SELECT * FROM locations;', function(error, result){
 		if(error) throw error;
 		if(result.length) {
-		    var locationId = result[0]['COUNT(*)'] + 1;
+		    var locationId = result[result.length - 1].id + 1;
 		    var stmt = 'INSERT INTO locations ' +
 		              '(id, name, numOfDevices, api) '+
 		              'VALUES ' +
@@ -314,10 +406,10 @@ app.post('/admin/createlocation', function(req, res){
 		               ');';
 		    connection.query(stmt, function(error, result){
 		    	//Create an Empty Pricing Entry for New Location
-		        connection.query('SELECT COUNT(*) FROM pricing;', function(error, result){
+		        connection.query('SELECT * FROM pricing;', function(error, result){
 					if(error) throw error;
 					if(result.length) {
-					    var priceId = result[0]['COUNT(*)'] + 1;
+					    var priceId = result[result.length - 1].id + 1;
 					    var stmt = 'INSERT INTO pricing ' +
 					              '(id, price, tax, distance) '+
 					              'VALUES ' +
