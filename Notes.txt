@@ -191,11 +191,18 @@ Logged In (Admin): All Pages
 Notes 4.29.20 - EH
 
 Updated the navigation bar
-	Before logging in, the location/login/create page is no longer seen.
+	Before logging in, the login/create page is no longer seen.
 	After logging in such as users, every page is availabe for them except admin/login/create page.
 	When the Admin logins, he/she is routed to the admin page. All other pages is no longer available.
 	
 Added a title "Spin Scooters at CSU Monterey" so users get an idea of what the website
 is about along with the CSUMB otter logo.
+
+-----------------------
+
+Notes 4.29.20 - CV
+Changed all buttons to use bootstrap.
+Changed search by weather to search by zip code.
+Added options for admin to add & edit zip code when adding/editing locations.
 
 -----------------------

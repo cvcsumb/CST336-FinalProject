@@ -1,15 +1,5 @@
 <%- include ('templates/header'); -%>
 
-    <nav class = "nava">
-        <center>
-            <hr width="50%" />
-            <a href = "/">LOGIN</a>
-            <a href = "/profile">PROFILE </a>
-            <a href = "/travel">TRAVEL </a>
-            <a href = "/locations">LOCATIONS</a>
-           
-        </center>
-    </nav>
     <main>
         <center>
             <hr>
@@ -27,7 +17,10 @@
                     <label for="scooters"><b>Number of Scooters</b></label>
                     <input type="number" min="0" placeholder="Enter Number of Scooters" name="scooters" value='<%=location.numOfDevices%>' required>
                     
-                    <button>Save Changes</button>
+                    <label for="zip"><b>Zip Code</b></label>
+                    <input type="text" placeholder="Enter Zip Code" id="zip" name="zip" value='<%=location.api%>' required>
+                    
+                    <button type="submit" class="btn btn-success">Save Changes</button>
                 </div>
                 
                 <div class="container" style="background-color:#f1f1f1">

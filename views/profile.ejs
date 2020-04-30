@@ -35,9 +35,9 @@
                     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
                     
                     <% if (profile.username == "admin") {%>
-                        <button type="delete" style="background-color: #808080" disabled >Delete Account</button>
+                        <button type="delete" class="btn btn-secondary" disabled>Delete Account</button>
                     <%} else {%>
-                        <button type="delete" style="background-color: #f44336">Delete Account</button>
+                        <button type="delete" class="btn btn-danger">Delete Account</button>
                     <%}%>
                 </div>
             </form>

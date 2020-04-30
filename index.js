@@ -20,7 +20,6 @@ app.use(session({
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
-
 const connection = mysql.createConnection({
     host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'kpyfn44vex96sekym',
@@ -28,16 +27,15 @@ const connection = mysql.createConnection({
     database: 'n8df92sdd6bxd4p4'
 });
 connection.connect();
-
 //Local SQL Testing (To Be Deleted Once Project is Done)
-/* const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
     host: 'localhost',
     user: '',
     password: '',
     database: 'scooterdb'
 });
-connection.connect();
-*/
+connection.connect();*/
+
 /* Middleware */
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/');
@@ -183,6 +181,10 @@ app.get('/travel', isAuthenticated, function(req, res){
 	});
 });
 
+app.get('/bookconfirm', isAuthenticated, function(req, res) {
+    res.render('bookconfirm');
+});
+
 /* The handler for the API route */
 /*
 app.get('/api', function(req, res){
@@ -192,20 +194,20 @@ app.get('/api', function(req, res){
 
 /* The handler for the LOCATIONS route */
 app.get('/locations', function(req, res){
-    var locationsN, locationsNS, locationsW = null;
-    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+    var locationsN, locationsNS, locationsZ = null;
+    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsZ: locationsZ});
 });
 
 app.get('/locationsbyname', function(req, res){
     var stmt = 'select * from locations where name = \'' 
                 + req.query.lname + '\';';
 	connection.query(stmt, function(error, results){
-	    var locationsN, locationsNS, locationsW = null;
+	    var locationsN, locationsNS, locationsZ = null;
 	    if(error) throw error;
 	    if (results.length) {
 	        locationsN = results;
 	    }
-	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsZ: locationsZ});
 	});
 });
 
@@ -213,25 +215,25 @@ app.get('/locationsbynumscooters', function(req, res){
     var stmt = 'select * from locations where numOfDevices >= \'' 
                 + req.query.numScooters + '\';';
 	connection.query(stmt, function(error, results){
-	    var locationsN, locationsNS, locationsW = null;
+	    var locationsN, locationsNS, locationsZ = null;
 	    if(error) throw error;
 	    if (results.length) {
 	        locationsNS = results;
 	    }
-	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsZ: locationsZ});
 	});
 });
 
-app.get('/locationsbyweather', function(req, res){
+app.get('/locationsbyzip', function(req, res){
     var stmt = 'select * from locations where api = \'' 
-                + req.query.weather + '\';';
+                + req.query.zip + '\';';
 	connection.query(stmt, function(error, results){
-	    var locationsN, locationsNS, locationsW = null;
+	    var locationsN, locationsNS, locationsZ = null;
 	    if(error) throw error;
 	    if (results.length) {
-	        locationsW = results;
+	        locationsZ = results;
 	    }
-	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsW: locationsW});
+	    res.render('locations', {locationsN: locationsN, locationsNS: locationsNS, locationsZ: locationsZ});
 	});
 });
 
@@ -370,7 +372,8 @@ app.get('/admin/:id/editlocation', isAdmin, function(req, res){
 app.put('/admin/:id/updatelocation', isAdmin, function(req, res){
     var stmt = 'UPDATE locations SET ' +
                 'name = "'+ req.body.name + '",' +
-                'numOfDevices = "'+ req.body.scooters + '"' +
+                'numOfDevices = "'+ req.body.scooters + '",' +
+                'api = "'+ req.body.zip + '"' +
                 'WHERE id = ' + req.params.id + ";";
     //console.log(stmt);
     connection.query(stmt, function(error, result){
@@ -400,13 +403,9 @@ app.post('/admin/createlocation', isAdmin, function(req, res){
 		    var locationId = result[result.length - 1].id + 1;
 		    var stmt = 'INSERT INTO locations ' +
 		              '(id, name, numOfDevices, api) '+
-		              'VALUES ' +
-		              '(' + 
-		               locationId + ',"' +
-		               req.body.locationName2 + '","' +
-		               req.body.scooters + '","Sunny"' +
-		               ');';
-		    connection.query(stmt, function(error, result){
+		              'VALUES (?, ?, ?, ?);';
+		    var data = [locationId, req.body.locationName2, req.body.scooters, req.body.zip];
+		    connection.query(stmt, data, function(error, result){
 		    	//Create an Empty Pricing Entry for New Location
 		        connection.query('SELECT * FROM pricing;', function(error, result){
 					if(error) throw error;
@@ -414,11 +413,9 @@ app.post('/admin/createlocation', isAdmin, function(req, res){
 					    var priceId = result[result.length - 1].id + 1;
 					    var stmt = 'INSERT INTO pricing ' +
 					              '(id, price, tax, distance) '+
-					              'VALUES ' +
-					              '(' + 
-					               priceId + ',"0","0","0"' +
-					               ');';
-					    connection.query(stmt, function(error, result){
+					              'VALUES (?, ?, ?, ?);';
+					    var data = [priceId, "0", "0", "0"];
+					    connection.query(stmt, data, function(error, result){
 							if(error) throw error;
 					        res.redirect('/admin');
 					    });
