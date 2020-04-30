@@ -21,10 +21,10 @@ app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
 const connection = mysql.createConnection({
-    host: 'dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user: 'kpyfn44vex96sekym',
-    password: 'ehoi2ti8jouvd9qo',
-    database: 'n8df92sdd6bxd4p4'
+    host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'xlkciosjknvj17b7',
+    password: 'b6tvlxy5f63pe1qw',
+    database: 'fdvgy10ospfmv9uf'
 });
 connection.connect();
 //Local SQL Testing (To Be Deleted Once Project is Done)
