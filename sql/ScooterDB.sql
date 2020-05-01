@@ -1,8 +1,7 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
---
--- Host: localhost    Database: scooterdb
--- ------------------------------------------------------
--- Server version	8.0.19
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +13,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 
 --
 -- Table structure for table `locations`
@@ -31,26 +31,26 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `name`, `numOfDevices`, `api`) VALUES
-(1, 'Administration Building', 4, '93935'),
-(2, 'Alumni & Visitors Center', 8, '93935'),
-(3, 'Beach Hall', 13, '93935'),
-(4, 'Black Box Cabaret', 18, '93935'),
-(5, 'Chapman Science Academic Center', 16, '93935'),
-(6, 'College of Arts, Humanities, and Social Sciences', 4, '93935'),
-(7, 'Cinematic Arts & Technology', 9, '93935'),
-(8, 'Coast Hall', 2, '93935'),
-(9, 'Del Mar', 20, '93935'),
-(10, 'Dining Commons', 3, '93935'),
-(11, 'Dunes Hall', 5, '93935'),
-(12, 'Facilities Services & Operations', 6, '93935'),
-(13, 'Gambord Business Information & Technology', 11, '93935'),
-(14, 'Gavilan Hall', 1, 'Cloudy'),
-(15, 'Green Hall', 5, '93935'),
-(16, 'Harbor Hall', 4, '93935'),
-(17, 'Manzanita Hall', 8, '93935'),
-(18, 'Promontory – West', 12, '93935'),
-(19, 'Promontory – Center', 15, '93935'),
-(20, 'Vineyard Suites', 1, '93935');
+(1, 'Administration Building', 4, '93955'),
+(2, 'Alumni & Visitors Center', 8, '93955'),
+(3, 'Beach Hall', 13, '93955'),
+(4, 'Black Box Cabaret', 18, '93955'),
+(5, 'Chapman Science Academic Center', 16, '93955'),
+(6, 'College of Arts, Humanities, and Social Sciences', 4, '93955'),
+(7, 'Cinematic Arts & Technology', 9, '93955'),
+(8, 'Coast Hall', 2, '93955'),
+(9, 'Del Mar', 20, '93955'),
+(10, 'Dining Commons', 3, '93955'),
+(11, 'Dunes Hall', 5, '93955'),
+(12, 'Facilities Services & Operations', 6, '93955'),
+(13, 'Gambord Business Information & Technology', 11, '93955'),
+(14, 'Gavilan Hall', 1, '93955'),
+(15, 'Green Hall', 5, '93955'),
+(16, 'Harbor Hall', 4, '93955'),
+(17, 'Manzanita Hall', 8, '93955'),
+(18, 'Promontory – West', 12, '93933'),
+(19, 'Promontory – Center', 15, '93933'),
+(20, 'Vineyard Suites', 1, '93955');
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
