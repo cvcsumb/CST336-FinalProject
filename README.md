@@ -1,4 +1,4 @@
-# CST-336-Final-via-Spin-Scooters
+# CST 336 Final Project - Spin Scooters at CSUMB
 
 As the final project for CST 336, we created a sample website for [Spin Scooters](https://www.spin.app/) where users are able to create an account, login, edit their account, search locations using 3 different fields, and book a fake trip. Admins are able to edit the database where all the site info is located, to remove accounts, edit locations, and edit trip prices.
 
